@@ -1,0 +1,10 @@
+[
+    {"username":"super","password":"pwd","email":"super@au.com","role":{"role":"superAdmin"}},
+    {"username":"group","password":"pwd","email":"group@au.com","role":{"role":"groupAdmin"}},
+    {"username":"taylor","password":"pwd","email":"group@au.com","role":{"role":"groupAdmin"}},
+    {"username":"groupassis","password":"pwd","email":"groupassi@au.com","role":{"role":"groupAssis"}},
+    {"username":"tom","password":"pwd","email":"groupassis@au.com","role":{"role":"groupAssis"}},
+    {"username":"test","password":"pwd","email":"test@au.com","role":{"role":"default"}},
+    {"username":"john","password":"pwd","email":"test@au.com","role":{"role":"default"}},
+    {"username":"james","password":"pwd","email":"test@au.com","role":{"role":"default"}}
+]
