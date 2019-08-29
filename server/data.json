@@ -1,10 +1,1 @@
-[
-    {"username":"super","password":"pwd","email":"super@au.com","role":{"role":"superAdmin"}},
-    {"username":"group","password":"pwd","email":"group@au.com","role":{"role":"groupAdmin"}},
-    {"username":"taylor","password":"pwd","email":"group@au.com","role":{"role":"groupAdmin"}},
-    {"username":"groupassis","password":"pwd","email":"groupassi@au.com","role":{"role":"groupAssis"}},
-    {"username":"tom","password":"pwd","email":"groupassis@au.com","role":{"role":"groupAssis"}},
-    {"username":"test","password":"pwd","email":"test@au.com","role":{"role":"default"}},
-    {"username":"john","password":"pwd","email":"test@au.com","role":{"role":"default"}},
-    {"username":"james","password":"pwd","email":"test@au.com","role":{"role":"default"}}
-]
+{"users":[{"username":"super","email":"super@com.au","role":"superadmin"},{"username":"james","email":"james@com.au","role":"superadmin"},{"username":"nat","email":"nat@com.au","role":"superadmin"},{"username":"group","email":"group@com.au","role":"groupadmin"},{"username":"groupass","email":"groupass@com.au","role":"groupassis"},{"username":"sally","email":"sally@com.au","role":"superadmin"}]}
