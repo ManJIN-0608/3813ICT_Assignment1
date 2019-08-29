@@ -79,6 +79,7 @@ export class HomeComponent implements OnInit {
   logout(){
     console.log('Log out');
     localStorage.clear();
+    console.log(localStorage);
     this.router.navigateByUrl("/");
   }
 

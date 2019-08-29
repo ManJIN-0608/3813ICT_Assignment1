@@ -14,6 +14,7 @@ module.exports = function(app, path){
             }
             allData = JSON.parse(data);
             users = allData.users;
+            allData.users = users;
                 // Removes active user from user array
             for(let i = 0; i < users.length; i++){
                 if(users[i].username == username){
@@ -21,13 +22,15 @@ module.exports = function(app, path){
                     users.splice([i], 1);
                 }
             }
-            console.log(users);
-            allDataJson = JSON.stringify(users);
+            allDataJson = JSON.stringify(allData);
                 fs.writeFile("./data.json", allDataJson, "utf-8", function(err){
                     if(err){
                         throw err;
                     }
                 });
+                console.log(allData);
+                console.log(allData.users);
+                console.log(allDataJson);
                 console.log(users);
                 res.send(users);
         });
