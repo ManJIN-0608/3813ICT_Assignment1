@@ -11,7 +11,7 @@ const BACKEND_URL = "http://localhost:3000";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  username;
+  username="";
   user = [];
   users = [];
 
@@ -70,15 +70,16 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // logout(){
-  //   localStorage.clear();
-  //   this.router.navigateByUrl("/login");
-  // }
-
   ngOnInit() {
     this.username = localStorage.getItem("username");
     this.fetchUser();
     this.fetchAllUsers();
+  }
+
+  logout(){
+    console.log('Log out');
+    localStorage.clear();
+    this.router.navigateByUrl("/");
   }
 
 }

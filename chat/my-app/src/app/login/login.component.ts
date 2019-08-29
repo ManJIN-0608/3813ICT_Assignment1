@@ -27,9 +27,10 @@ export class LoginComponent implements OnInit {
     this.http.post<any>(BACKEND_URL + "/checkUser", userObj).subscribe((data) =>{
       if(data){
         this.access = true;
+        console.log(userObj);
         localStorage.setItem("username", this.username);
         console.log(data);
-        //console.log(localStorage);
+        console.log(localStorage.getItem('username'));
         this.router.navigateByUrl("/home")
       }else{
         console.log(this.errorMsg);
