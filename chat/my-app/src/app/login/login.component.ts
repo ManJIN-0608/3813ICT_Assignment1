@@ -14,7 +14,7 @@ const BACKEND_URL = "http://localhost:3000";
 export class LoginComponent implements OnInit {
   username = "";
   access = false;
-  errorMsg = "Nah mate you aren't real";
+  errorMsg = "You aren't real";
 
   constructor(private router:Router, private form:FormsModule, private http:HttpClient) { }
 

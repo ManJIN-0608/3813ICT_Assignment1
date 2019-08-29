@@ -1,5 +1,5 @@
 <p>home works!</p>
-<h4>Hello {{user.username}}</h4>
+<h4>Hello {{user.username}} !</h4>
 
 <div *ngIf="user.role == 'superadmin' || user.role == 'groupadmin'">
     <h3>Create User</h3>
@@ -13,17 +13,17 @@
         <option value="groupassis">Group Assis</option>
         <option value="superadmin" *ngIf="user.role == 'superadmin'">Super Admin</option>
       </select>
-      <input type="submit" value="Create a new user" (click)="createUser()"/>
+      <input type="submit" value="Create a new user" class="btn btn-info" (click)="createUser()"/><br>
       <!--<div *ngIf="newRole == 'Group Assis'">
       <select>
         <option disabled selected>Which Group?</option>
       </select>
       </div>-->
-      <input type="submit" value="Log out" (click)="logout()"/>
+      <input type="submit" value="Log out" class="btn btn-info"(click)="logout()"/>
     </form>
-  </div>
+</div>
   
-  <div *ngIf="user.role == 'superadmin'">
+<div *ngIf="user.role == 'superadmin'">
     <h3>Delete User</h3>
     <form>
       <select [(ngModel)]="username" name="username">
@@ -32,12 +32,12 @@
             {{u.username}}
           </option>
       </select>
-      <input type="submit" value="Delete a user" (click)="deleteUser()"/>
+      <input type="submit" value="Delete a user" class="btn btn-info" (click)="deleteUser()"/>
     </form>
-  </div>
+</div>
   
-  <div *ngFor="let u of users">
+<div *ngFor="let u of users">
     <ul>
       <li>{{u.username}}</li>
     </ul>
-  </div>
+</div>
