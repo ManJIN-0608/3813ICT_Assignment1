@@ -1,0 +1,65 @@
+<p>home works!</p>
+<h4>Hello {{user.username}} !</h4>
+
+<div *ngIf="user.role == 'superadmin' || user.role == 'groupadmin'">
+    <h3>Create User</h3>
+    <form>
+      <input type="text" [(ngModel)]="newUser" name="newUser" id="newUser" class="form-control" placeholder="Username"/><br>
+      <input type="text" [(ngModel)]="newEmail" name="newEmail" id="newEmail" class="form-control" placeholder="Email"/><br>
+      <select [(ngModel)]="newRole" name="newRole" class="mdb-select md-form">
+        <option value="" disabled selected>Select Role</option>
+        <option value="user">User</option>
+        <option value="groupadmin">Group Admin</option>
+        <option value="groupassis">Group Assis</option>
+        <option value="superadmin" *ngIf="user.role == 'superadmin'">Super Admin</option>
+      </select>
+      <input type="submit" value="Create a new user" class="btn btn-info" (click)="createUser()"/><br>
+    <h3>Create Group</h3>
+    <form>
+      <input type="text" [(ngModel)]="newGroup" name="newGroup" id="newGroup" class="form-control" placeholder="Groupname"/><br>
+      <input type="submit" value="Create a new group" class="btn btn-info" (click)="createGroup()"/><br>
+    </form> 
+      <!--<div *ngIf="newRole == 'Group Assis'">
+      <select>
+        <option disabled selected>Which Group?</option>
+      </select>
+      </div>-->
+    </form>
+    <h3>Delete Group</h3>
+    <form>
+      <select [(ngModel)]="groupname" name="groupname" class="mdb-select md-form">
+          <option value="">Select Group</option>
+          <option *ngFor="let g of groups">
+            {{g.groupname}}
+          </option>
+      </select>
+      <input type="submit" value="Delete a group" class="btn btn-info" (click)="deleteGroup()"/>
+    </form>
+</div>
+
+<div *ngFor="let g of groups">
+    <ul>
+        <li>{{g.groupname}}</li>
+    </ul>
+</div>
+  
+<div *ngIf="user.role == 'superadmin'">
+    <h3>Delete User</h3>
+    <form>
+      <select [(ngModel)]="username" name="username" class="mdb-select md-form">
+          <option value="">Select User</option>
+          <option *ngFor="let u of users">
+            {{u.username}}
+          </option>
+      </select>
+      <input type="submit" value="Delete a user" class="btn btn-info" (click)="deleteUser()"/>
+    </form>
+</div>
+  
+<div *ngFor="let u of users">
+    <ul>
+      <li>{{u.username}}</li>
+    </ul>
+</div>
+
+<input type="submit" value="Log out" class="btn btn-info"(click)="logout()"/>
