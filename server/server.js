@@ -34,3 +34,4 @@ require("./routes/addUsersToGroup.js")(app, path);
 require("./routes/addChannel.js")(app, path);
 require("./routes/fetchAllChannels.js")(app, path);
 require("./routes/deleteChannel.js")(app, path);
+require("./routes/addUsersToChannel.js")(app, path);

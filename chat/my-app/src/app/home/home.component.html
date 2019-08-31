@@ -104,6 +104,22 @@
       </select>
       <input type="submit" value="Delete a channel" class="btn btn-info" (click)="deleteChannel()"/>
     </form>
+    <h3>Add users to channel</h3>
+    <form>
+      <select [(ngModel)]="channelname" name="channelname" class="mdb-select md-form">
+        <option value="">Select Channel</option>
+        <option *ngFor="let c of channels">
+          {{c.channelname}}
+        </option>
+      </select><br>
+      <select [(ngModel)]="username" name="username" class="mdb-select md-form">
+        <option value="">Select User</option>
+        <option *ngFor="let u of users">
+          {{u.username}}
+        </option>
+    </select>
+    <input type="submit" value="Add users to channel" class="btn btn-info" (click)="addUsersToChannel()"/><br>
+    </form>
 </div>
 
 <input type="submit" value="Log out" class="btn btn-info"(click)="logout()"/>

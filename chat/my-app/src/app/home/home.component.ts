@@ -130,6 +130,23 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  addUsersToChannel(){
+    let userObj = {
+      "channelname" : this.channelname,
+      "username" : this.username
+    }
+
+    this.http.post<any>(BACKEND_URL + "/addUsersToChannel", userObj).subscribe((data) => {
+      if(data){
+        console.log(data);
+        this.channels = data;
+      }else{
+        console.log(data);
+        this.error = data;
+      }
+    });
+  }
+
   fetchUser(){
     let userObj = {"username" : this.username};
     this.http.post<any>(BACKEND_URL + "/fetchUser", userObj).subscribe((data) => {
