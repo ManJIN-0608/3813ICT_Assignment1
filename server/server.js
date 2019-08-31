@@ -30,3 +30,7 @@ require("./routes/deleteUser.js")(app, path);
 require("./routes/addGroup.js")(app, path);
 require("./routes/fetchAllGroups.js")(app, path);
 require("./routes/deleteGroup.js")(app, path);
+require("./routes/addUsersToGroup.js")(app, path);
+require("./routes/addChannel.js")(app, path);
+require("./routes/fetchAllChannels.js")(app, path);
+require("./routes/deleteChannel.js")(app, path);

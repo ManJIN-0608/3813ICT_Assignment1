@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-// Module returns an array containing all user objects
+// Module returns an array containing all group objects
 
 module.exports = function(app, path){
     app.post("/fetchAllGroups", function(req, res){

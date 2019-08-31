@@ -23,6 +23,10 @@ export class HomeComponent implements OnInit {
   groups = [];
   newGroup = "";
 
+  channelname="";
+  channels = [];
+  newChannel="";
+
   error = '';
 
   constructor(private forms:FormsModule, private router:Router, private http:HttpClient) { }
@@ -59,15 +63,30 @@ export class HomeComponent implements OnInit {
   }
 
   createGroup(){
-    let userObj = {
-      "newGroup" : ""
+    let groupObj = {
+      "groupname" : this.newGroup
     }
 
-    userObj.newGroup = this.newGroup;
-
-    this.http.post<any>(BACKEND_URL + "/addGroup", userObj).subscribe((data) => {
+    this.http.post<any>(BACKEND_URL + "/addGroup", groupObj).subscribe((data) => {
       console.log(data);
       if(data != "Group exists"){
+        console.log(data);
+        this.groups = data;
+      }else{
+        console.log(data);
+        this.error = data;
+      }
+    });
+  }
+  
+  addUsersToGroup(){
+    let userObj = {
+      "groupname" : this.groupname,
+      "username" : this.username
+    }
+
+    this.http.post<any>(BACKEND_URL + "/addUsersToGroup", userObj).subscribe((data) => {
+      if(data){
         console.log(data);
         this.groups = data;
       }else{
@@ -82,6 +101,32 @@ export class HomeComponent implements OnInit {
     this.http.post<any>(BACKEND_URL + "/deleteGroup", userObj).subscribe((data) => {
       console.log(data);
       this.groups = data;
+    })
+  }
+
+  createChannel(){
+    let channelObj = {
+      "channelname" : this.newChannel,
+      "groupname" : this.groupname
+    }
+
+    this.http.post<any>(BACKEND_URL + "/addChannel", channelObj).subscribe((data) => {
+      console.log(data);
+      if(data != "Channel exists"){
+        console.log(data);
+        this.channels = data;
+      }else{
+        console.log(data);
+        this.error = data;
+      }
+    });
+  }
+
+  deleteChannel(){
+    let userObj = {"channelname" : this.channelname};
+    this.http.post<any>(BACKEND_URL + "/deleteChannel", userObj).subscribe((data) => {
+      console.log(data);
+      this.channels = data;
     })
   }
 
@@ -109,11 +154,20 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  fetchAllChannels(){
+    let userObj = {"channelname" : this.channelname};
+    this.http.post<any>(BACKEND_URL + "/fetchAllChannels", userObj).subscribe((data) => {
+      console.log(data);
+      this.channels = data;
+    });
+  }
+
   ngOnInit() {
     this.username = localStorage.getItem("username");
     this.fetchUser();
     this.fetchAllUsers();
     this.fetchAllGroups();
+    this.fetchAllChannels();
   }
 
   logout(){

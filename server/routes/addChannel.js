@@ -1,17 +1,21 @@
 const fs = require("fs");
 
 module.exports = function(app, path){
-    app.post("/addGroup", function(req, res){
-        let newGroup = {
+    app.post("/addChannel", function(req, res){
+        let newChannel = {
+            "channelname": req.body.channelname,
             "groupname" : req.body.groupname,
             "users" : []
         }
         
 
-        let groupExists = false;
+        console.log(newChannel.channelname);
+        console.log(newChannel.groupname);
+
+        let channelExists = false;
         let allData = [];
-        let groups = [];
-        console.log("Made it to new Group");
+        let channels = [];
+        console.log("Made it to new Channel");
 
         if(!req.body){
             return res.sendstatus(400);
@@ -22,14 +26,14 @@ module.exports = function(app, path){
                 throw err;
             }
             allData = JSON.parse(data);
-            for(let i = 0; i < allData.groups.length; i++){
-                if(allData.groups[i].groupname == newGroup.groupname){
-                    groupExists = true;
+            for(let i = 0; i < allData.channels.length; i++){
+                if(allData.channels[i].channelname == newChannel.channelname){
+                    channelExists = true;
                 }
             }
-            if(!groupExists){
-                allData.groups.push(newGroup);
-                groups = allData.groups;
+            if(!channelExists){
+                allData.channels.push(newChannel);
+                channels = allData.channels;
                 console.log(allData);
                 let allDataJson = JSON.stringify(allData);
                 fs.writeFile("./data.json", allDataJson, "utf-8", function(err){
@@ -37,10 +41,10 @@ module.exports = function(app, path){
                         throw err;
                     }
                 });
-                console.log(groups);
-                res.send(groups);
+                console.log(channels);
+                res.send(channels);
             }else{
-                res.send("Group exists");
+                res.send("Channel exists");
             }
         });
     });
