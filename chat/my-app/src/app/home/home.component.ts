@@ -147,10 +147,27 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  deleteUsersFromChannel(){
+    let userObj = {
+      "channelname" : this.channelname,
+      "username" : this.username
+    }
+
+    this.http.post<any>(BACKEND_URL + "/deleteUsersFromChannel", userObj).subscribe((data) => {
+      if(data){
+        console.log(data);
+        this.channels = data;
+      }else{
+        console.log(data);
+        this.error = data;
+      }
+    });
+  }
+
   fetchUser(){
     let userObj = {"username" : this.username};
     this.http.post<any>(BACKEND_URL + "/fetchUser", userObj).subscribe((data) => {
-      // console.log(data);
+      console.log(data);
       this.user = data;
     });
   }
