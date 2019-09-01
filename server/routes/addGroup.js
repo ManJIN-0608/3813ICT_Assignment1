@@ -1,5 +1,6 @@
 const fs = require("fs");
 
+// Create a new group by groupname
 module.exports = function(app, path){
     app.post("/addGroup", function(req, res){
         let newGroup = {
@@ -11,7 +12,7 @@ module.exports = function(app, path){
         let groupExists = false;
         let allData = [];
         let groups = [];
-        console.log("Made it to new Group");
+        console.log("Made it to addGroup");
 
         if(!req.body){
             return res.sendstatus(400);
@@ -31,7 +32,9 @@ module.exports = function(app, path){
                 allData.groups.push(newGroup);
                 groups = allData.groups;
                 console.log(allData);
+
                 let allDataJson = JSON.stringify(allData);
+                
                 fs.writeFile("./data.json", allDataJson, "utf-8", function(err){
                     if(err){
                         throw err;

@@ -1,5 +1,6 @@
 const fs = require("fs");
 
+// Add user to group by username and groupname
 module.exports = function (app, path) {
     app.post("/addUsersToGroup", function (req, res) {
 
@@ -10,7 +11,7 @@ module.exports = function (app, path) {
         let groups = [];
 
         console.log(user);
-        console.log("Made it to new Group");
+        console.log("Made it to addUsersToGroup");
 
         if (!req.body) {
             return res.sendstatus(400);
@@ -29,6 +30,7 @@ module.exports = function (app, path) {
 
             groups = allData.groups;
             console.log(allData);
+            
             let allDataJson = JSON.stringify(allData);
             fs.writeFile("./data.json", allDataJson, "utf-8", function (err) {
                 if (err) {

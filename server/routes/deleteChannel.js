@@ -1,5 +1,6 @@
 const fs = require("fs");
 
+// Delete channel by channelname
 module.exports = function(app, path){
     app.post("/deleteChannel", function(req, res){
         let channelname = req.body.channelname;
@@ -28,9 +29,9 @@ module.exports = function(app, path){
                         throw err;
                     }
                 });
-                console.log(allData);
-                console.log(allData.channels);
-                console.log(allDataJson);
+                // console.log(allData);
+                // console.log(allData.channels);
+                // console.log(allDataJson);
                 console.log(channels);
                 res.send(channels);
         });

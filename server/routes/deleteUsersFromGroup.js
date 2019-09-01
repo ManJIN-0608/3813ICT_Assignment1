@@ -1,5 +1,6 @@
 const fs = require("fs");
 
+// Delete user from group by groupname and username
 module.exports = function (app, path) {
     app.post("/deleteUsersFromGroup", function (req, res) {
 
@@ -20,6 +21,7 @@ module.exports = function (app, path) {
             if (err) {
                 throw err;
             }
+
             allData = JSON.parse(data);
             for (let i = 0; i < allData.groups.length; i++) {
                 if (allData.groups[i].groupname == group) {
@@ -34,6 +36,8 @@ module.exports = function (app, path) {
             groups = allData.groups;
             console.log(allData);
             let allDataJson = JSON.stringify(allData);
+
+            // Write file
             fs.writeFile("./data.json", allDataJson, "utf-8", function (err) {
                 if (err) {
                     throw err;

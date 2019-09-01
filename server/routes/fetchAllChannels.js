@@ -1,7 +1,6 @@
 const fs = require("fs");
 
 // Module returns an array containing all channel objects
-
 module.exports = function(app, path){
     app.post("/fetchAllChannels", function(req, res){
         let channelname = req.body.channelname;

@@ -11,26 +11,35 @@ const BACKEND_URL = "http://localhost:3000";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  // User
   username="";
   user = [];
   users = [];
 
+  // New user
   newUser = "";
   newEmail = "";
   newRole = "";
 
+  // Group
   groupname="";
   groups = [];
+
+  // New group
   newGroup = "";
 
+  // Channel
   channelname="";
   channels = [];
+
+  // New channel
   newChannel="";
 
   error = '';
 
   constructor(private forms:FormsModule, private router:Router, private http:HttpClient) { }
 
+  // Create a user
   createUser(){
     let userObj = {
       "newUser" : "",
@@ -54,6 +63,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Delete a user
   deleteUser(){
     let userObj = {"username" : this.username};
     this.http.post<any>(BACKEND_URL + "/deleteUser", userObj).subscribe((data) => {
@@ -62,6 +72,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  // Create a group
   createGroup(){
     let groupObj = {
       "groupname" : this.newGroup
@@ -79,6 +90,16 @@ export class HomeComponent implements OnInit {
     });
   }
   
+  // Delete a group
+  deleteGroup(){
+    let userObj = {"groupname" : this.groupname};
+    this.http.post<any>(BACKEND_URL + "/deleteGroup", userObj).subscribe((data) => {
+      console.log(data);
+      this.groups = data;
+    })
+  }
+
+  // Add exist user to group
   addUsersToGroup(){
     let userObj = {
       "groupname" : this.groupname,
@@ -96,14 +117,25 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  deleteGroup(){
-    let userObj = {"groupname" : this.groupname};
-    this.http.post<any>(BACKEND_URL + "/deleteGroup", userObj).subscribe((data) => {
-      console.log(data);
-      this.groups = data;
-    })
+  // Delete users from group
+  deleteUsersFromGroup(){
+    let userObj = {
+      "groupname" : this.groupname,
+      "username" : this.username
+    }
+
+    this.http.post<any>(BACKEND_URL + "/deleteUsersFromGroup", userObj).subscribe((data) => {
+      if(data){
+        console.log(data);
+        this.groups = data;
+      }else{
+        console.log(data);
+        this.error = data;
+      }
+    });
   }
 
+  // Create a channel
   createChannel(){
     let channelObj = {
       "channelname" : this.newChannel,
@@ -122,6 +154,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Delete a channel
   deleteChannel(){
     let userObj = {"channelname" : this.channelname};
     this.http.post<any>(BACKEND_URL + "/deleteChannel", userObj).subscribe((data) => {
@@ -130,6 +163,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  // Add exist user to channel
   addUsersToChannel(){
     let userObj = {
       "channelname" : this.channelname,
@@ -147,6 +181,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Delete users from channel
   deleteUsersFromChannel(){
     let userObj = {
       "channelname" : this.channelname,
@@ -164,23 +199,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  deleteUsersFromGroup(){
-    let userObj = {
-      "groupname" : this.groupname,
-      "username" : this.username
-    }
-
-    this.http.post<any>(BACKEND_URL + "/deleteUsersFromGroup", userObj).subscribe((data) => {
-      if(data){
-        console.log(data);
-        this.groups = data;
-      }else{
-        console.log(data);
-        this.error = data;
-      }
-    });
-  }
-
+  // Fetch the information of login user
   fetchUser(){
     let userObj = {"username" : this.username};
     this.http.post<any>(BACKEND_URL + "/fetchUser", userObj).subscribe((data) => {
@@ -189,6 +208,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Fetch all users' information expect current user
   fetchAllUsers(){
     let userObj = {"username" : this.username};
     this.http.post<any>(BACKEND_URL + "/fetchAllUsers", userObj).subscribe((data) => {
@@ -197,6 +217,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Fetch all froups
   fetchAllGroups(){
     let userObj = {"groupname" : this.groupname};
     this.http.post<any>(BACKEND_URL + "/fetchAllGroups", userObj).subscribe((data) => {
@@ -205,6 +226,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Fetch all channels
   fetchAllChannels(){
     let userObj = {"channelname" : this.channelname};
     this.http.post<any>(BACKEND_URL + "/fetchAllChannels", userObj).subscribe((data) => {
@@ -213,19 +235,21 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.username = localStorage.getItem("username");
-    this.fetchUser();
-    this.fetchAllUsers();
-    this.fetchAllGroups();
-    this.fetchAllChannels();
-  }
-
+  // Logout and clear localstorage
   logout(){
     console.log('Log out');
     localStorage.clear();
     console.log(localStorage);
     this.router.navigateByUrl("/");
+  }
+ 
+  ngOnInit() {
+    // Remember the logged in username
+    this.username = localStorage.getItem("username");
+    this.fetchUser();
+    this.fetchAllUsers();
+    this.fetchAllGroups();
+    this.fetchAllChannels();
   }
 
 }

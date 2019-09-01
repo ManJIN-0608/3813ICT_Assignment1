@@ -1,5 +1,6 @@
 const fs = require("fs");
 
+// Delete user by username
 module.exports = function(app, path){
     app.post("/deleteUser", function(req, res){
         let username = req.body.username;
@@ -22,15 +23,16 @@ module.exports = function(app, path){
                     users.splice([i], 1);
                 }
             }
+
             let allDataJson = JSON.stringify(allData);
                 fs.writeFile("./data.json", allDataJson, "utf-8", function(err){
                     if(err){
                         throw err;
                     }
                 });
-                console.log(allData);
-                console.log(allData.users);
-                console.log(allDataJson);
+                // console.log(allData);
+                // console.log(allData.users);
+                // console.log(allDataJson);
                 console.log(users);
                 res.send(users);
         });

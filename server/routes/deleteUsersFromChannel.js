@@ -1,5 +1,6 @@
 const fs = require("fs");
 
+// Delete user from channel by channelname and username
 module.exports = function (app, path) {
     app.post("/deleteUsersFromChannel", function (req, res) {
 
@@ -33,6 +34,7 @@ module.exports = function (app, path) {
 
             channels = allData.channels;
             console.log(allData);
+
             let allDataJson = JSON.stringify(allData);
             fs.writeFile("./data.json", allDataJson, "utf-8", function (err) {
                 if (err) {

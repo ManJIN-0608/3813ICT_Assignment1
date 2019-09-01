@@ -1,5 +1,6 @@
 const fs = require("fs");
 
+// Create a new channel by channelname and groupname
 module.exports = function(app, path){
     app.post("/addChannel", function(req, res){
         let newChannel = {
@@ -15,7 +16,7 @@ module.exports = function(app, path){
         let channelExists = false;
         let allData = [];
         let channels = [];
-        console.log("Made it to new Channel");
+        console.log("Made it to addChannel");
 
         if(!req.body){
             return res.sendstatus(400);
@@ -35,7 +36,9 @@ module.exports = function(app, path){
                 allData.channels.push(newChannel);
                 channels = allData.channels;
                 console.log(allData);
+
                 let allDataJson = JSON.stringify(allData);
+                
                 fs.writeFile("./data.json", allDataJson, "utf-8", function(err){
                     if(err){
                         throw err;

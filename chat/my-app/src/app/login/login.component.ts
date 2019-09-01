@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Check the username and login
   login(){
     let userObj = {username: this.username};
 

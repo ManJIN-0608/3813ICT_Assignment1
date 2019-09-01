@@ -1,5 +1,6 @@
 const fs = require("fs");
 
+// Delete group by groupname
 module.exports = function(app, path){
     app.post("/deleteGroup", function(req, res){
         let groupname = req.body.groupname;
@@ -12,6 +13,7 @@ module.exports = function(app, path){
             if(err){
                 throw err;
             }
+
             allData = JSON.parse(data);
             groups = allData.groups;
             allData.groups = groups;
@@ -22,15 +24,16 @@ module.exports = function(app, path){
                     groups.splice([i], 1);
                 }
             }
+
             let allDataJson = JSON.stringify(allData);
                 fs.writeFile("./data.json", allDataJson, "utf-8", function(err){
                     if(err){
                         throw err;
                     }
                 });
-                console.log(allData);
-                console.log(allData.groups);
-                console.log(allDataJson);
+                // console.log(allData);
+                // console.log(allData.groups);
+                // console.log(allDataJson);
                 console.log(groups);
                 res.send(groups);
         });

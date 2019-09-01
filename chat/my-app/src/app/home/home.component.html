@@ -5,6 +5,7 @@
   </div>
 </div><br><br>
 
+<!-- user and group -->
 <div *ngIf="user.role == 'superadmin' || user.role == 'groupadmin'" class="form-group" class="container">
     <h3>Create User</h3>
     <form>
@@ -83,7 +84,8 @@
         <li>{{g.groupname}}</li>
     </ul>
 </div> -->
-  
+
+<!-- delete a user -->
 <div *ngIf="user.role == 'superadmin'" class="form-group" class="container">
     <h3>Delete User</h3>
     <form>
@@ -105,6 +107,7 @@
     </ul>
 </div> -->
 
+<!-- channel -->
 <div *ngIf="user.role == 'superadmin' || user.role == 'groupadmin' || user.role == 'groupassis'" class="form-group" class="container">
     <h3>Create Channel</h3>
     <form>
@@ -169,6 +172,7 @@
     </form><br>
 </div>
 
+<!-- text box -->
 <div class="form-group" class="container">
 <h3>Text box in a channel</h3>
   <form>
