@@ -1,16 +1,16 @@
 const fs = require("fs");
 
 module.exports = function (app, path) {
-    app.post("/deleteUsersFromChannel", function (req, res) {
+    app.post("/deleteUsersFromGroup", function (req, res) {
 
         let user = req.body.username;
-        let channel = req.body.channelname;
+        let group = req.body.groupname;
 
         let allData = [];
-        let channels = [];
+        let groups = [];
 
         console.log(user);
-        console.log("Made it to deleteUsersFromChannel");
+        console.log("Made it to deleteUsersFromGroup");
 
         if (!req.body) {
             return res.sendstatus(400);
@@ -21,17 +21,17 @@ module.exports = function (app, path) {
                 throw err;
             }
             allData = JSON.parse(data);
-            for (let i = 0; i < allData.channels.length; i++) {
-                if (allData.channels[i].channelname == channel) {
-                    for(let j = 0; j < allData.channels[i].users.length; j++){
-                        if(allData.channels[i].users[j] == user){
-                            allData.channels[i].users.splice(j, 1);
+            for (let i = 0; i < allData.groups.length; i++) {
+                if (allData.groups[i].groupname == group) {
+                    for(let j = 0; j < allData.groups[i].users.length; j++){
+                        if(allData.groups[i].users[j] == user){
+                            allData.groups[i].users.splice(j, 1);
                         }
                     }
                 }
             }
 
-            channels = allData.channels;
+            groups = allData.groups;
             console.log(allData);
             let allDataJson = JSON.stringify(allData);
             fs.writeFile("./data.json", allDataJson, "utf-8", function (err) {
@@ -39,8 +39,8 @@ module.exports = function (app, path) {
                     throw err;
                 }
             });
-            console.log(channels);
-            res.send(channels);
+            console.log(groups);
+            res.send(groups);
         });
 });
 }

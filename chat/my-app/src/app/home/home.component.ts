@@ -164,6 +164,23 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  deleteUsersFromGroup(){
+    let userObj = {
+      "groupname" : this.groupname,
+      "username" : this.username
+    }
+
+    this.http.post<any>(BACKEND_URL + "/deleteUsersFromGroup", userObj).subscribe((data) => {
+      if(data){
+        console.log(data);
+        this.groups = data;
+      }else{
+        console.log(data);
+        this.error = data;
+      }
+    });
+  }
+
   fetchUser(){
     let userObj = {"username" : this.username};
     this.http.post<any>(BACKEND_URL + "/fetchUser", userObj).subscribe((data) => {
