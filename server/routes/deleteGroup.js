@@ -22,7 +22,7 @@ module.exports = function(app, path){
                     groups.splice([i], 1);
                 }
             }
-            allDataJson = JSON.stringify(allData);
+            let allDataJson = JSON.stringify(allData);
                 fs.writeFile("./data.json", allDataJson, "utf-8", function(err){
                     if(err){
                         throw err;

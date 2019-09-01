@@ -15,14 +15,14 @@ module.exports = function(app, path){
             allData = JSON.parse(data);
             users = allData.users;
             allData.users = users;
-                // Removes active user from user array
+                // Removes selected user from user array
             for(let i = 0; i < users.length; i++){
                 if(users[i].username == username){
                     console.log(users[i]);
                     users.splice([i], 1);
                 }
             }
-            allDataJson = JSON.stringify(allData);
+            let allDataJson = JSON.stringify(allData);
                 fs.writeFile("./data.json", allDataJson, "utf-8", function(err){
                     if(err){
                         throw err;

@@ -11,12 +11,12 @@ The server files are largely spread out between 15 main files:
 * addGroup.js
 * deletegroup.js
 * addUsersToGroup.js
-* deleteUsersToGroup.js
+* deleteUsersFromGroup.js
 * fetchAllChannels.js
 * addChannel.js
 * deleteChannel.js
 * addUsersToChannel.js
-* deleteUsersToChannel.js
+* deleteUsersFromChannel.js
 
 ## server.js
 **server.js** is the main file that will run the server.
@@ -24,86 +24,108 @@ The server files are largely spread out between 15 main files:
 ## data.json
 This is my data structure:
 {
-    "users": [
+    **"users"**: [
         {
-            "username": "super",
-            "email": "super@com.au",
-            "role": "superadmin"
+            *"username"*: "super",
+            *"email"*: "super@com.au",
+            *"role"*: "superadmin"
         },
         {
-            "username": "james",
-            "email": "james@com.au",
-            "role": "superadmin"
+            *"username"*: "james",
+            *"email"*: "james@com.au",
+            *"role"*: "superadmin"
         },
         {
-            "username": "group",
-            "email": "group@com.au",
-            "role": "groupadmin"
+            *"username"*: "group",
+            *"email"*: "group@com.au",
+            *"role"*: "groupadmin"
         },
         {
-            "username": "groupass",
-            "email": "groupass@com.au",
-            "role": "groupassis"
+            *"username"*: "groupass",
+            *"email"*: "groupass@com.au",
+            *"role"*: "groupassis"
         },
         {
-            "username": "member1",
-            "email": "member1@com.au",
-            "role": "user"
+            *"username"*: "member1",
+            *"email"*: "member1@com.au",
+            *"role"*: "user"
         }
     ],
-    "groups": [
+    **"groups"**: [
         {
-            "groupname": "2811ICT",
-            "users": [
+            *"groupname"*: "2811ICT",
+            *"users"*: [
                 "groupass",
                 "member1"
             ]
         },
         {
-            "groupname": "3811ICT",
-            "users": []
+            *"groupname"*: "3811ICT",
+            *"users"*: []
         },
         {
-            "groupname": "3813ICT",
-            "users": []
+            *"groupname"*: "3813ICT",
+            *"users"*: []
         }
     ],
-    "channels": [
+    **"channels"**: [
         {
-            "channelname": "Lab",
-            "groupname": "2811ICT",
-            "users": [
+            *"channelname"*: "Lab",
+            *"groupname"*: "2811ICT",
+            *"users"*: [
                 "group"
             ]
         },
         {
-            "channelname": "Assignment",
-            "groupname": "2811ICT",
-            "users": []
+            *"channelname"*: "Assignment",
+            *"groupname"*: "2811ICT",
+            *"users"*: []
         }
     ]
 }
 
-## checkUser.js
+# Routes
+**[GET]checkUser.js**
 This route returns **userValid** (true or false) to determine whether the user is in the data.json when the user enters the username.
 
-## fetchUser.js
+**[GET]fetchUser.js**
 This route returns the information of the current logged-in **user** (username, email, and role).
 
-## fetchAllUsers.js
-This route returns the information for all **users** except the current logged-in user.
+**[GET]fetchAllUsers.js**
+This route returns an array containing all **users** objects.
 
-## addUser.js
-The client user enters the username, email, and role. This route reads and writes data.json file, and checks wheher the user exists. Add the new user to the data.json file and return a **users** list.
+**[POST]addUser.js**
+The client user *(superadmin and groupadmin)* enters the username, email, and role. This route reads and writes data.json file, and checks wheher the user exists. Add the new user to the data.json file and return a **users** list.
 
-## deleteUser.js
-## fetchAllGroups.js
-## addGroup.js
-## deletegroup.js
-## addUsersToGroup.js
-## deleteUsersToGroup.js
-## fetchAllChannels.js
-## addChannel.js
-## deleteChannel.js
-## addUsersToChannel.js
-## deleteUsersToChannel.js
+**[DELETE]deleteUser.js**
+The client user *(superadmin)* select the username he/she want to delete. This route reads data.json file and removes selected user from users array. And writes new users list into data.json file and returns a **users** list except the selected user.
+
+**[GET]fetchAllGroups.js**
+This route returns an array containing all **groups** objects.
+
+**[POST]addGroup.js**
+The client user *(superadmin and groupadmin)* enters the groupname. This route reads and writes data.json file, and checks wheher the group exists. Add the new group to the data.json file and return a **groups** list (groupname and an empty users array in a group).
+
+**[DELETE]deletegroup.js**
+The client user *(superadmin and groupadmin)* select the groupname he/she want to delete. This route reads data.json file and removes selected group from groups array. And writes new groups list into data.json file and returns a **groups** list except the selected group.
+
+**[POST]addUsersToGroup.js**
+The client user *(superadmin and groupadmin)* selects the username and groupname. This route reads and writes data.json file. Add the exist user to the selected group in the data.json file and return a **groups** list.
+
+**[DELETE]deleteUsersFromGroup.js**
+The client user *(superadmin and groupadmin)* selects the username and groupname. This route reads and writes data.json file. Delete the exist user from the selected group in the data.json file and return a **groups** list.
+
+**[GET]fetchAllChannels.js**
+This route returns an array containing all **channels** objects.
+
+**[POST]addChannel.js**
+The client user *(superadmin and groupadmin and groupassis)* enters the channelname and groupname. This route reads and writes data.json file, and checks wheher the channel exists. Add the new channel to the data.json file and return a **channels** list (channelname, groupname and an empty users array in a channel).
+
+**[DELETE]deleteChannel.js**
+The client user *(superadmin and groupadmin and groupassis)* select the channelname he/she want to delete. This route reads data.json file and removes selected channel from channels array. And writes new channels list into data.json file and returns a **channels** list except the selected channel.
+
+**[POST]addUsersToChannel.js**
+The client user *(superadmin and groupadmin and groupassis)* selects the username and channelname. This route reads and writes data.json file. Add the exist user to the selected channel in the data.json file and return a **channels** list.
+
+**[DELETE]deleteUsersFromChannel.js**
+The client user *(superadmin and groupadmin and groupassis)* selects the username and channelname. This route reads and writes data.json file. Delete the exist user from the selected channel in the data.json file and return a **channels** list.
