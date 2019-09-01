@@ -1,8 +1,19 @@
 # Summary
 The server files are largely spread out between three main files:
-server.js|data.json
-checkUser.js|fetchAllGroups.js|fetchAllChannels.js
-fetchUser.js|addGroup.js|addChannel.js
-fetchAllUsers.js|deletegroup.js|deleteChannel.js
-addUser.js|addUsersToGroup.js|addUsersToChannel.js
-fetchUser.js|deleteUsersToGroup.js|deleteUsersToChannel.js
+* server.js
+* data.json
+* checkUser.js
+* fetchUser.js
+* fetchAllUsers.js
+* addUser.js
+* deleteUser.js
+* fetchAllGroups.js
+* addGroup.js
+* deletegroup.js
+* addUsersToGroup.js
+* deleteUsersToGroup.js
+* fetchAllChannels.js
+* addChannel.js
+* deleteChannel.js
+* addUsersToChannel.js
+* deleteUsersToChannel.js
