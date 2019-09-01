@@ -22,9 +22,9 @@ The home component is my main page. It uses **all routes** from node server and 
 | delete user            | create group           | delete channel         |
 | create group           | delete group           | add user to channel    |
 | delete group           | add user to group      |delete user from channel|
-| add user to group      | delete user from group |                        |
-| delete user from group | create channel         |                        |
-| create channel         | delete channel         |                        |
-| delete channel         | add user to channel    |                        |
-| add user to channel    | delete user from channel|                       |
-| delete user from channel|                        |                       |
+| add user to group      | delete user from group |        null            |
+| delete user from group | create channel         |        null            |
+| create channel         | delete channel         |        null            |
+| delete channel         | add user to channel    |        null            |
+| add user to channel    | delete user from channel|       null            |
+| delete user from channel|    null                |       null            |
