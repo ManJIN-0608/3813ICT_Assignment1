@@ -18,7 +18,7 @@ There are a text box for user to enter username and a button to login.
 **home component**:<br/>
 The home component is my main page. It uses **all routes** from node server and uses *ngIf to differentiate roles.<br/>
 
-| superadmin permissions | groupadmin permissions | groupassis permissions || ----- | ------ | ----- |
+| superadmin permissions | groupadmin permissions | groupassis permissions || -----                  | ------                 | -----                  |
 | create user            | create user            | create channel         |
 | delete user            | create group           | delete channel         |
 | create group           | delete group           | add user to channel    |
@@ -29,3 +29,16 @@ The home component is my main page. It uses **all routes** from node server and 
 | delete channel         | add user to channel    |        null            |
 | add user to channel    | delete user from channel|       null            |
 | delete user from channel|    null                |       null            |
+
+<!-- **superadmin permissions**:<br/>
+* create user
+* delete user
+* create group
+* delete group
+* add user to group
+* delete user from group
+*
+*
+*
+*
+* -->
