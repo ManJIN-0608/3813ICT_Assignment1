@@ -11,8 +11,20 @@ Run `ng generate component component-name` to generate a new component.
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 # Augular architecture
-**login component**
-The login component uses **checkUser** route from node server to check whether user exists.
+**login component**:<br/>
+The login component uses **checkUser** route from node server to check whether user exists.<br/>
+There are a text box for user to enter username and a button to login. 
 
-**home component**
-The home component is my main page. It uses all routes from node server and uses *ngIf to differentiate roles.
+**home component**:<br/>
+The home component is my main page. It uses **all routes** from node server and uses *ngIf to differentiate roles.<br/>
+| superadmin permissions | groupadmin permissions | groupassis permissions || ---------------------- | ---------------------- | ---------------------- |
+| create user            | create user            | create channel         |
+| delete user            | create group           | delete channel         |
+| create group           | delete group           | add user to channel    |
+| delete group           | add user to group      |delete user from channel|
+| add user to group      | delete user from group |                        |
+| delete user from group | create channel         |                        |
+| create channel         | delete channel         |                        |
+| delete channel         | add user to channel    |                        |
+| add user to channel    | delete user from channel|                       |
+| delete user from channel|                        |                       |
