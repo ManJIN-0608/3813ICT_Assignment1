@@ -85,9 +85,12 @@ This is my data structure:
 }
 
 # Routes
+
+### Login
 **[GET]checkUser.js**
 This route returns **userValid** (true or false) to determine whether the user is in the data.json when the user enters the username.
 
+### User
 **[GET]fetchUser.js**
 This route returns the information of the current logged-in **user** (username, email, and role).
 
@@ -100,6 +103,7 @@ The client user *(superadmin and groupadmin)* enters the username, email, and ro
 **[DELETE]deleteUser.js**
 The client user *(superadmin)* select the username he/she want to delete. This route reads data.json file and removes selected user from users array. And writes new users list into data.json file and returns a **users** list except the selected user.
 
+### Group
 **[GET]fetchAllGroups.js**
 This route returns an array containing all **groups** objects.
 
@@ -115,6 +119,7 @@ The client user *(superadmin and groupadmin)* selects the username and groupname
 **[DELETE]deleteUsersFromGroup.js**
 The client user *(superadmin and groupadmin)* selects the username and groupname. This route reads and writes data.json file. Delete the exist user from the selected group in the data.json file and return a **groups** list.
 
+### Channel
 **[GET]fetchAllChannels.js**
 This route returns an array containing all **channels** objects.
 
