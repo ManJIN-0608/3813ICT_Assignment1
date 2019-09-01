@@ -1,7 +1,11 @@
-<p>home works!</p>
-<h4>Hello {{user.username}} !</h4>
+<h2>Hello {{user.username}}!</h2>
+<div class="container">
+  <div class="float-right">
+    <input type="submit" value="Log out" class="btn btn-warning" (click)="logout()"/>
+  </div>
+</div><br><br>
 
-<div *ngIf="user.role == 'superadmin' || user.role == 'groupadmin'">
+<div *ngIf="user.role == 'superadmin' || user.role == 'groupadmin'" class="form-group" class="container">
     <h3>Create User</h3>
     <form>
       <input type="text" [(ngModel)]="newUser" name="newUser" id="newUser" class="form-control" placeholder="Username"/><br>
@@ -13,45 +17,17 @@
         <option value="groupassis">Group Assis</option>
         <option value="superadmin" *ngIf="user.role == 'superadmin'">Super Admin</option>
       </select>
-      <input type="submit" value="Create a new user" class="btn btn-info" (click)="createUser()"/><br>
-    </form>
+      <div class="float-right">
+        <input type="submit" value="Create a new user" class="btn btn-info" (click)="createUser()"/><br>
+      </div>
+    </form><br>
     <h3>Create Group</h3>
     <form>
       <input type="text" [(ngModel)]="newGroup" name="newGroup" id="newGroup" class="form-control" placeholder="Groupname"/><br>
-      <input type="submit" value="Create a new group" class="btn btn-info" (click)="createGroup()"/><br>
-    </form>
-    <h3>Add users to group</h3>
-    <form>
-      <select [(ngModel)]="groupname" name="groupname" class="mdb-select md-form">
-        <option value="">Select Group</option>
-        <option *ngFor="let g of groups">
-          {{g.groupname}}
-        </option>
-      </select><br>
-      <select [(ngModel)]="username" name="username" class="mdb-select md-form">
-        <option value="">Select User</option>
-        <option *ngFor="let u of users">
-          {{u.username}}
-        </option>
-      </select>
-    <input type="submit" value="Add users to group" class="btn btn-info" (click)="addUsersToGroup()"/><br>
-    </form>
-    <h3>Delete users from group</h3>
-    <form>
-      <select [(ngModel)]="groupname" name="groupname" class="mdb-select md-form">
-        <option value="">Select Group</option>
-        <option *ngFor="let g of groups">
-          {{g.groupname}}
-        </option>
-      </select><br>
-      <select [(ngModel)]="username" name="username" class="mdb-select md-form">
-        <option value="">Select User</option>
-        <option *ngFor="let u of users">
-          {{u.username}}
-        </option>
-      </select>
-    <input type="submit" value="Delete users from group" class="btn btn-info" (click)="deleteUsersFromGroup()"/><br>
-    </form>
+      <div class="float-right">
+        <input type="submit" value="Create a new group" class="btn btn-info" (click)="createGroup()"/><br>
+      </div>
+    </form><br>
     <h3>Delete Group</h3>
     <form>
       <select [(ngModel)]="groupname" name="groupname" class="mdb-select md-form">
@@ -60,17 +36,55 @@
             {{g.groupname}}
           </option>
       </select>
-      <input type="submit" value="Delete a group" class="btn btn-info" (click)="deleteGroup()"/>
-    </form>
+      <div class="float-right">
+        <input type="submit" value="Delete a group" class="btn btn-info" (click)="deleteGroup()"/>
+      </div>
+    </form><br>
+    <h3>Add users to group</h3>
+    <form>
+      <select [(ngModel)]="groupname" name="groupname" class="mdb-select md-form">
+        <option value="">Select Group</option>
+        <option *ngFor="let g of groups">
+          {{g.groupname}}
+        </option>
+      </select>
+      <select [(ngModel)]="username" name="username" class="mdb-select md-form">
+        <option value="">Select User</option>
+        <option *ngFor="let u of users">
+          {{u.username}}
+        </option>
+      </select>
+      <div class="float-right">
+        <input type="submit" value="Add users to group" class="btn btn-info" (click)="addUsersToGroup()"/><br>
+      </div>
+    </form><br>
+    <h3>Delete users from group</h3>
+    <form>
+      <select [(ngModel)]="groupname" name="groupname" class="mdb-select md-form">
+        <option value="">Select Group</option>
+        <option *ngFor="let g of groups">
+          {{g.groupname}}
+        </option>
+      </select>
+      <select [(ngModel)]="username" name="username" class="mdb-select md-form">
+        <option value="">Select User</option>
+        <option *ngFor="let u of users">
+          {{u.username}}
+        </option>
+      </select>
+      <div class="float-right">
+        <input type="submit" value="Delete users from group" class="btn btn-info" (click)="deleteUsersFromGroup()"/><br>
+      </div>
+    </form><br>
 </div>
 
-<div *ngFor="let g of groups">
+<!-- <div *ngFor="let g of groups" class="container">
     <ul>
         <li>{{g.groupname}}</li>
     </ul>
-</div>
+</div> -->
   
-<div *ngIf="user.role == 'superadmin'">
+<div *ngIf="user.role == 'superadmin'" class="form-group" class="container">
     <h3>Delete User</h3>
     <form>
       <select [(ngModel)]="username" name="username" class="mdb-select md-form">
@@ -79,17 +93,19 @@
             {{u.username}}
           </option>
       </select>
-      <input type="submit" value="Delete a user" class="btn btn-info" (click)="deleteUser()"/>
-    </form>
+      <div class="float-right">
+        <input type="submit" value="Delete a user" class="btn btn-info" (click)="deleteUser()"/>
+      </div>
+    </form><br>
 </div>
   
-<div *ngFor="let u of users">
+<!-- <div *ngFor="let u of users" class="container">
     <ul>
       <li>{{u.username}}</li>
     </ul>
-</div>
+</div> -->
 
-<div *ngIf="user.role == 'superadmin' || user.role == 'groupadmin' || user.role == 'groupassis'">
+<div *ngIf="user.role == 'superadmin' || user.role == 'groupadmin' || user.role == 'groupassis'" class="form-group" class="container">
     <h3>Create Channel</h3>
     <form>
         <select [(ngModel)]="groupname" name="groupname" class="mdb-select md-form">
@@ -98,11 +114,11 @@
               {{g.groupname}}
             </option>
         </select>
-    </form>
-    <form>
       <input type="text" [(ngModel)]="newChannel" name="newChannel" id="newChannel" class="form-control" placeholder="Channelname"/><br>
-      <input type="submit" value="Create a new channel" class="btn btn-info" (click)="createChannel()"/><br>
-    </form>
+      <div class="float-right">
+        <input type="submit" value="Create a new channel" class="btn btn-info" (click)="createChannel()"/><br>
+      </div>
+    </form><br>
     <h3>Delete Channel</h3>
     <form>
       <select [(ngModel)]="channelname" name="channelname" class="mdb-select md-form">
@@ -111,8 +127,10 @@
             {{c.channelname}}
           </option>
       </select>
-      <input type="submit" value="Delete a channel" class="btn btn-info" (click)="deleteChannel()"/>
-    </form>
+      <div class="float-right">
+        <input type="submit" value="Delete a channel" class="btn btn-info" (click)="deleteChannel()"/>
+      </div>
+    </form><br>
     <h3>Add users to channel</h3>
     <form>
       <select [(ngModel)]="channelname" name="channelname" class="mdb-select md-form">
@@ -120,15 +138,17 @@
         <option *ngFor="let c of channels">
           {{c.channelname}}
         </option>
-      </select><br>
+      </select>
       <select [(ngModel)]="username" name="username" class="mdb-select md-form">
         <option value="">Select User</option>
         <option *ngFor="let u of users">
           {{u.username}}
         </option>
       </select>
-    <input type="submit" value="Add users to channel" class="btn btn-info" (click)="addUsersToChannel()"/><br>
-    </form>
+      <div class="float-right">
+        <input type="submit" value="Add users to channel" class="btn btn-info" (click)="addUsersToChannel()"/><br>
+      </div>
+    </form><br>
     <h3>Delete users from channel</h3>
     <form>
       <select [(ngModel)]="channelname" name="channelname" class="mdb-select md-form">
@@ -136,18 +156,20 @@
         <option *ngFor="let c of channels">
           {{c.channelname}}
         </option>
-      </select><br>
+      </select>
       <select [(ngModel)]="username" name="username" class="mdb-select md-form">
         <option value="">Select User</option>
         <option *ngFor="let u of users">
           {{u.username}}
         </option>
       </select>
-    <input type="submit" value="Delete users from channel" class="btn btn-info" (click)="deleteUsersFromChannel()"/><br>
-    </form>
+      <div class="float-right">
+        <input type="submit" value="Delete users from channel" class="btn btn-info" (click)="deleteUsersFromChannel()"/><br>
+      </div>
+    </form><br>
 </div>
 
-
+<div class="form-group" class="container">
 <h3>Text box in a channel</h3>
   <form>
     <select [(ngModel)]="channelname" name="channelname" class="mdb-select md-form">
@@ -158,8 +180,7 @@
     </select><br>
     <div>
       <input type="text" id="myText" placeholder="Text here">
-      <button class="btn btn-info">Enter</button>
+      <button class="btn btn-success">Enter</button>
     </div>
   </form>
-
-<input type="submit" value="Log out" class="btn btn-info" (click)="logout()"/>
+</div><br><br>
