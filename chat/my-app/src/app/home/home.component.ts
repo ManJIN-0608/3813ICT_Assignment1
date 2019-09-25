@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
 
   // New user
   newUser = "";
+  newPassword = "";
   newEmail = "";
   newRole = "";
 
@@ -43,11 +44,13 @@ export class HomeComponent implements OnInit {
   createUser(){
     let userObj = {
       "newUser" : "",
+      "newPassword" : "",
       "newEmail" : "",
       "newRole" : "",
     }
 
     userObj.newUser = this.newUser;
+    userObj.newPassword = this.newPassword;
     userObj.newEmail = this.newEmail;
     userObj.newRole = this.newRole;
 

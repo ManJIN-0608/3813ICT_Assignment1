@@ -5,6 +5,7 @@ module.exports = function(app, path){
     app.post("/addUser", function(req, res){
         let newUser = {
             "username" : req.body.newUser,
+            "password" : req.body.newPassword,
             "email" : req.body.newEmail,
             "role" : req.body.newRole,
         }

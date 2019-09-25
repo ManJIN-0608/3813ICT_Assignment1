@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>  
 <h2>Hello {{user.username}}!</h2>
 <div class="container">
   <div class="float-right">
@@ -10,6 +11,7 @@
     <h3>Create User</h3>
     <form>
       <input type="text" [(ngModel)]="newUser" name="newUser" id="newUser" class="form-control" placeholder="Username"/><br>
+      <input type="text" [(ngModel)]="newPassword" name="newPassword" id="newPassword" class="form-control" placeholder="Password"/><br>
       <input type="text" [(ngModel)]="newEmail" name="newEmail" id="newEmail" class="form-control" placeholder="Email"/><br>
       <select [(ngModel)]="newRole" name="newRole" class="mdb-select md-form">
         <option value="" disabled selected>Select Role</option>
