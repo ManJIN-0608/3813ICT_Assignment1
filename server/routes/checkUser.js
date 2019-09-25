@@ -4,6 +4,7 @@ const fs = require("fs");
 module.exports = function(app, path){
     app.post("/checkUser", function(req, res){
         let username = req.body.username;
+        let password = req.body.password;
         let users = [];
         let userValid = false;
         console.log("Made it to checkUser");
@@ -22,7 +23,7 @@ module.exports = function(app, path){
             users = allData.users;
             
             for(let i = 0; i < users.length; i++){
-                if(username == users[i].username){
+                if(username == users[i].username && password == users[i].password){
                     userValid = true
                 }
             }

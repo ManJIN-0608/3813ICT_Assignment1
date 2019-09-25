@@ -13,6 +13,7 @@ const BACKEND_URL = "http://localhost:3000";
 
 export class LoginComponent implements OnInit {
   username = "";
+  password = "";
   access = false;
   errorMsg = "You aren't real";
 
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   // Check the username and login
   login(){
-    let userObj = {username: this.username};
+    let userObj = {username: this.username, password: this.password};
 
     this.http.post<any>(BACKEND_URL + "/checkUser", userObj).subscribe((data) =>{
       if(data){
