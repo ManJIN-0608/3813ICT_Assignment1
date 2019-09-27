@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const cors = require('cors');
+var http = require('http').Server(app);
 const io = require('socket.io')(http);
 const sockets = require('./socket.js');
 
@@ -37,7 +39,6 @@ MongoClient.connect(url, { poolSize: 10, useNewUrlParser: true, useUnifiedTopolo
 });
 
 // Cross origin resourse sharing to cater for port 4200 to port 3000
-const cors = require('cors');
 app.use(cors());
 
 const PORT = 3000;
@@ -51,8 +52,6 @@ app.use(bodyParser.json());
 // Point static path to dist if you want use your own server to serve Angular webpage
 app.use(express.static('http://localhost:4200'));
 
-
-var http = require('http').Server(app);
 let server = http.listen(3000, function () {
     let host = server.address().address;
     let port = server.address().port;

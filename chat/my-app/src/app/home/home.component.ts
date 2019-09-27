@@ -13,9 +13,9 @@ const BACKEND_URL = "http://localhost:3000";
 })
 export class HomeComponent implements OnInit {
 
-  // messagecontent: string="";
-  // message: string[] = [];
-  // ioConnection: any;
+  messagecontent: string="";
+  messages: string[] = [];
+  ioConnection: any;
 
   // User
   username="";
@@ -253,7 +253,7 @@ export class HomeComponent implements OnInit {
   }
  
   ngOnInit() {
-    // this.initIoConnection();
+    this.initIoConnection();
     // Remember the logged in username
     this.username = localStorage.getItem("username");
     this.fetchUser();
@@ -262,20 +262,20 @@ export class HomeComponent implements OnInit {
     this.fetchAllChannels();
   }
 
-  // private initIoConnection(){
-  //   this.socketService.initSocket();
-  //   this.ioConnection = this.socketService.onMessage()
-  //     .subscribe((message:string) => {
-  //       this.message.push(message);
-  //     });
-  // }
-  // chat(){
-  //   if(this.messagecontent){
-  //     this.socketService.send(this.messagecontent);
-  //     this.messagecontent=null;
-  //   }else{
-  //     console.log("no message");
-  //   }
-  // }
+  private initIoConnection(){
+    this.socketService.initSocket();
+    this.ioConnection = this.socketService.onMessage()
+      .subscribe((message:string) => {
+        this.messages.push(message);
+      });
+  }
+  chat(){
+    if(this.messagecontent){
+      this.socketService.send(this.messagecontent);
+      this.messagecontent=null;
+    }else{
+      console.log("no message");
+    }
+  }
 
 }
