@@ -36,14 +36,13 @@ MongoClient.connect(url, { poolSize: 10, useNewUrlParser: true, useUnifiedTopolo
     require("./routes/deleteUsersFromGroup.js")(app, db);
 });
 
+// Cross origin resourse sharing to cater for port 4200 to port 3000
+const cors = require('cors');
+app.use(cors());
 
 const PORT = 3000;
 
 sockets.connect(io, PORT);
-
-// Cross origin resourse sharing to cater for port 4200 to port 3000
-const cors = require('cors');
-app.use(cors());
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -61,3 +60,4 @@ let server = http.listen(3000, function () {
     console.log("Server listening on: " + host + " port: " + port);
 });
 
+module.exports = app; // this export is for test

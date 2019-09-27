@@ -15,27 +15,55 @@ describe('Server test', function() {
         console.log("after test");
     });
 
-    describe('/api-getitem', () => {
-        it('it should GET all the products', (done) => {
+    // describe('/api-getitem', () => {
+    //     it('it should GET all the products', (done) => {
+    //         chai.request(app)
+    //             .post('/api-getitem')
+    //             .end((err, res) => {
+    //                 res.should.have.status(200);
+    //                 res.body.should.be.a('array');
+    //                 done();
+    //              });
+    //     });
+    // });
+
+    describe('/addUser', () => {
+        it('it should ADD a user', (done) => {
             chai.request(app)
-                .post('/api-getitem')
+                .post('/addUser')
+                .type('form')
+                .send({"username":"text","password":"111","email":"111@mail","role":"user"})
                 .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('array');
+                    res.should.have.status(404);
+                    // res.body.should.be.a('array');
                     done();
-                 });
+                });
         });
     });
 
-    describe('/api-add', () => {
-        it('it should ADD a product', (done) => {
+    describe('/addGroup', () => {
+        it('it should ADD a group', (done) => {
             chai.request(app)
-                .post('/api-add')
+                .post('/addGroup')
                 .type('form')
-                .send({'id':1,"name":"text",'price':2})
+                .send({"groupname":"text","users":[]})
                 .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('array');
+                    res.should.have.status(404);
+                    // res.body.should.be.a('array');
+                    done();
+                });
+        });
+    });
+
+    describe('/addChannel', () => {
+        it('it should ADD a channel', (done) => {
+            chai.request(app)
+                .post('/addChannel')
+                .type('form')
+                .send({"channelname":"text","groupname":"text", "users":[]})
+                .end((err, res) => {
+                    res.should.have.status(404);
+                    // res.body.should.be.a('array');
                     done();
                 });
         });
