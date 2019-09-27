@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { SocketService } from '../services/socket.service';
 
 const BACKEND_URL = "http://localhost:3000";
 
@@ -11,6 +12,11 @@ const BACKEND_URL = "http://localhost:3000";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  // messagecontent: string="";
+  // message: string[] = [];
+  // ioConnection: any;
+
   // User
   username="";
   user = [];
@@ -18,6 +24,7 @@ export class HomeComponent implements OnInit {
 
   // New user
   newUser = "";
+  newPassword = "";
   newEmail = "";
   newRole = "";
 
@@ -37,17 +44,19 @@ export class HomeComponent implements OnInit {
 
   error = '';
 
-  constructor(private forms:FormsModule, private router:Router, private http:HttpClient) { }
+  constructor(private forms:FormsModule, private router:Router, private http:HttpClient, private socketService:SocketService) { }
 
   // Create a user
   createUser(){
     let userObj = {
       "newUser" : "",
+      "newPassword" : "",
       "newEmail" : "",
       "newRole" : "",
     }
 
     userObj.newUser = this.newUser;
+    userObj.newPassword = this.newPassword;
     userObj.newEmail = this.newEmail;
     userObj.newRole = this.newRole;
 
@@ -244,6 +253,7 @@ export class HomeComponent implements OnInit {
   }
  
   ngOnInit() {
+    // this.initIoConnection();
     // Remember the logged in username
     this.username = localStorage.getItem("username");
     this.fetchUser();
@@ -251,5 +261,21 @@ export class HomeComponent implements OnInit {
     this.fetchAllGroups();
     this.fetchAllChannels();
   }
+
+  // private initIoConnection(){
+  //   this.socketService.initSocket();
+  //   this.ioConnection = this.socketService.onMessage()
+  //     .subscribe((message:string) => {
+  //       this.message.push(message);
+  //     });
+  // }
+  // chat(){
+  //   if(this.messagecontent){
+  //     this.socketService.send(this.messagecontent);
+  //     this.messagecontent=null;
+  //   }else{
+  //     console.log("no message");
+  //   }
+  // }
 
 }

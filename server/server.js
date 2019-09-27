@@ -1,6 +1,45 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const io = require('socket.io')(http);
+const sockets = require('./socket.js');
+
+const MongoClient = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectID;
+const url = 'mongodb://localhost:27017';
+
+MongoClient.connect(url, { poolSize: 10, useNewUrlParser: true, useUnifiedTopology: true }, async function (err, client) {
+    if (err) {
+        return console.log(err)
+    }
+    const dbName = 'myapp';
+    const db = client.db(dbName);
+
+    // let users = db.collection('users');
+    // await users.insertOne({"username":"test99"});
+
+    // Require all routes
+    require("./routes/checkUser.js")(app, db);
+    require("./routes/fetchAllUsers.js")(app, db);
+    require("./routes/addUser.js")(app, db);
+    require("./routes/fetchUser.js")(app, db);
+    require("./routes/deleteUser.js")(app, db);
+    require("./routes/addGroup.js")(app, db);
+    require("./routes/fetchAllGroups.js")(app, db);
+    require("./routes/deleteGroup.js")(app, db);
+    require("./routes/addUsersToGroup.js")(app, db);
+    require("./routes/addChannel.js")(app, db);
+    require("./routes/fetchAllChannels.js")(app, db);
+    require("./routes/deleteChannel.js")(app, db);
+    require("./routes/addUsersToChannel.js")(app, db);
+    require("./routes/deleteUsersFromChannel.js")(app, db);
+    require("./routes/deleteUsersFromGroup.js")(app, db);
+});
+
+
+const PORT = 3000;
+
+sockets.connect(io, PORT);
 
 // Cross origin resourse sharing to cater for port 4200 to port 3000
 const cors = require('cors');
@@ -19,22 +58,6 @@ let server = http.listen(3000, function () {
     let host = server.address().address;
     let port = server.address().port;
     console.log("My First Nodejs Server!");
-    console.log("Server listening on: "+ host + " port: " + port);
+    console.log("Server listening on: " + host + " port: " + port);
 });
 
-// Require all routes
-require("./routes/checkUser.js")(app, path);
-require("./routes/fetchAllUsers.js")(app, path);
-require("./routes/addUser.js")(app, path);
-require("./routes/fetchUser.js")(app, path);
-require("./routes/deleteUser.js")(app, path);
-require("./routes/addGroup.js")(app, path);
-require("./routes/fetchAllGroups.js")(app, path);
-require("./routes/deleteGroup.js")(app, path);
-require("./routes/addUsersToGroup.js")(app, path);
-require("./routes/addChannel.js")(app, path);
-require("./routes/fetchAllChannels.js")(app, path);
-require("./routes/deleteChannel.js")(app, path);
-require("./routes/addUsersToChannel.js")(app, path);
-require("./routes/deleteUsersFromChannel.js")(app, path);
-require("./routes/deleteUsersFromGroup.js")(app, path);

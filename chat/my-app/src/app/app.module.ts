@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
+import { SocketService } from './services/socket.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,7 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
