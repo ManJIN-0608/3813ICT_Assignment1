@@ -12,7 +12,8 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 # Augular architecture
 ## Components
-2 components were created 
+* 2 components were created 
+
 **login component**:<br/>
 The login component uses **checkUser** route from node server to check whether user exists.<br/>
 There are a text box for user to enter username and password and a button to login. 
