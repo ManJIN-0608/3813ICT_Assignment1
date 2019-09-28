@@ -13,6 +13,12 @@ const BACKEND_URL = "http://localhost:3000";
 })
 export class HomeComponent implements OnInit {
 
+  // private socket;
+  // roomnotice:string="";
+  // currentroom:string="";
+  // isinRoom=false;
+  // numusers:number=0;
+
   messagecontent: string="";
   messages: string[] = [];
   ioConnection: any;
@@ -254,6 +260,17 @@ export class HomeComponent implements OnInit {
  
   ngOnInit() {
     this.initIoConnection();
+    // this.socketService.initSocket();
+    // this.socketService.getMessage((m)=>{this.messages.push(m)});
+    // this.socketService.reqroomList();
+    // this.socketService.getroomList((msg)=>{this.channels=JSON.parse(msg)});
+    // this.socketService.notice((msg)=>{this.roomnotice=msg});
+    // this.socketService.joined((msg)=>{this.currentroom=msg});
+    // if (this.currentroom != "") {
+    //   this.isinRoom = true;
+    // } else {
+    //   this.isinRoom = false;
+    // }
     // Remember the logged in username
     this.username = localStorage.getItem("username");
     this.fetchUser();
@@ -279,5 +296,36 @@ export class HomeComponent implements OnInit {
       console.log("no message");
     }
   }
+
+  // joinroom() {
+  //   this.socketService.joinroom(this.channelname);
+  //   this.socketService.reqnumusers(this.channelname);
+  //   this.socketService.getnumusers((res)=>{this.numusers = res});
+  // }
+
+  // clearnotice() {
+  //   this.roomnotice = "";
+  // }
+
+  // leaveroom() {
+  //   this.socketService.leaveroom(this.currentroom);
+  //   this.socketService.reqnumusers(this.currentroom);
+  //   this.socketService.getnumusers((res)=>{this.numusers = res});
+  //   this.channelname = null;
+  //   this.currentroom = "";
+  //   this.isinRoom = false;
+  //   this.numusers = 0;
+  //   this.roomnotice = "";
+  //   this.messages = [];
+  // }
+
+  // chat() {
+  //   if (this.messagecontent) {
+  //     this.socketService.sendMessage(this.messagecontent);
+  //     this.messagecontent = null;
+  //   } else {
+  //     console.log("No Message");
+  //   }
+  // }
 
 }
