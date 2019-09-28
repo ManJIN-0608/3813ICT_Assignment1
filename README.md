@@ -1,6 +1,18 @@
 # 3813ICT_Assignment1
 
+# Quick lookup
+|Key|Value|
+|-|-|
+|Express port|`3000`|
+|Angular port|`4200`|
+|Socket-IO port|`3000`|
+|MongoDB port|`27017`|
+
 # Installation
+
+## MongoDB
+Start MongoDB before run node server and Angular, and it will start listening on **port 27017**.
+
 ## Node Server
 Change directory to **server** and run **npm install**. And then run **node server.js**. The Node server will start listening on port 3000. Node server is set up to accept CORS from **localhost:4200**. 
 

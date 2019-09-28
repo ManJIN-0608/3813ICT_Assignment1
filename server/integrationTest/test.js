@@ -68,4 +68,18 @@ describe('Server test', function() {
                 });
         });
     });
+
+    describe('/checkUser', () => {
+        it('it should CHECK a user', (done) => {
+            chai.request(app)
+                .post('/checkUser')
+                .type('form')
+                .send({"username":"super","password":"123"})
+                .end((err, res) => {
+                    res.should.have.status(404);
+                    // res.body.should.be.a('array');
+                    done();
+                });
+        });
+    });
 })

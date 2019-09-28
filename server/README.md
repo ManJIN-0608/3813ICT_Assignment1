@@ -21,8 +21,19 @@ The server files are largely spread out between 15 main files:
 ## server.js
 **server.js** is the main file that will run the server.
 
-## data.json
-This is my data structure:
+## socket.js
+Sockets are received on `http://localhost:3000`, with the following events implemented:
+ * user connect
+ * user disconnect
+ * user broadcasts message
+
+## test.js
+* Tests should be implemented for the Node.js server using Mocha or Chai.
+* User can use **npm run-script integrationTest** to see the test.
+
+
+## MongoDB
+This is my data structure in the MongoDB:
 {
     **"users"**: [
         {
@@ -88,7 +99,7 @@ This is my data structure:
 
 ### Login
 **[GET]checkUser.js**:<br/>
-This route returns **userValid** (true or false) to determine whether the user is in the data.json when the user enters the username.
+This route returns **userValid** (true or false) to determine whether the user is in the MongoDB when the user enters the username and password.
 
 ### User
 **[GET]fetchUser.js**:<br/>
@@ -98,39 +109,39 @@ This route returns the information of the current logged-in **user** (username, 
 This route returns an array containing all **users** objects.
 
 **[POST]addUser.js**:<br/>
-The client user *(superadmin and groupadmin)* enters the username, email, and role. This route reads and writes data.json file, and checks wheher the user exists. Add the new user to the data.json file and return a **users** list.
+The client user *(superadmin and groupadmin)* enters the username, email, and role. This route reads and writes MongoDB, and checks wheher the user exists. Add the new user to the MongoDB and return a **users** list.
 
 **[DELETE]deleteUser.js**:<br/>
-The client user *(superadmin)* select the username he/she want to delete. This route reads data.json file and removes selected user from users array. And writes new users list into data.json file and returns a **users** list except the selected user.
+The client user *(superadmin)* select the username he/she want to delete. This route reads MongoDB and removes selected user from users array. And writes new users list into MongoDB and returns a **users** list except the selected user.
 
 ### Group
 **[GET]fetchAllGroups.js**:<br/>
 This route returns an array containing all **groups** objects.
 
 **[POST]addGroup.js**:<br/>
-The client user *(superadmin and groupadmin)* enters the groupname. This route reads and writes data.json file, and checks wheher the group exists. Add the new group to the data.json file and return a **groups** list (groupname and an empty users array in a group).
+The client user *(superadmin and groupadmin)* enters the groupname. This route reads and writes MongoDB, and checks wheher the group exists. Add the new group to the MongoDB and return a **groups** list (groupname and an empty users array in a group).
 
 **[DELETE]deletegroup.js**:<br/>
-The client user *(superadmin and groupadmin)* select the groupname he/she want to delete. This route reads data.json file and removes selected group from groups array. And writes new groups list into data.json file and returns a **groups** list except the selected group.
+The client user *(superadmin and groupadmin)* select the groupname he/she want to delete. This route reads MongoDB and removes selected group from groups array. And writes new groups list into MongoDB and returns a **groups** list except the selected group.
 
 **[POST]addUsersToGroup.js**:<br/>
-The client user *(superadmin and groupadmin)* selects the username and groupname. This route reads and writes data.json file. Add the exist user to the selected group in the data.json file and return a **groups** list.
+The client user *(superadmin and groupadmin)* selects the username and groupname. This route reads and writes MongoDB. Add the exist user to the selected group in the MongoDB and return a **groups** list.
 
 **[DELETE]deleteUsersFromGroup.js**:<br/>
-The client user *(superadmin and groupadmin)* selects the username and groupname. This route reads and writes data.json file. Delete the exist user from the selected group in the data.json file and return a **groups** list.
+The client user *(superadmin and groupadmin)* selects the username and groupname. This route reads and writes MongoDB. Delete the exist user from the selected group in the MongoDB and return a **groups** list.
 
 ### Channel
 **[GET]fetchAllChannels.js**:<br/>
 This route returns an array containing all **channels** objects.
 
 **[POST]addChannel.js**:<br/>
-The client user *(superadmin and groupadmin and groupassis)* enters the channelname and groupname. This route reads and writes data.json file, and checks wheher the channel exists. Add the new channel to the data.json file and return a **channels** list (channelname, groupname and an empty users array in a channel).
+The client user *(superadmin and groupadmin and groupassis)* enters the channelname and groupname. This route reads and writes MongoDB, and checks wheher the channel exists. Add the new channel to the MongoDB and return a **channels** list (channelname, groupname and an empty users array in a channel).
 
 **[DELETE]deleteChannel.js**:<br/>
-The client user *(superadmin and groupadmin and groupassis)* select the channelname he/she want to delete. This route reads data.json file and removes selected channel from channels array. And writes new channels list into data.json file and returns a **channels** list except the selected channel.
+The client user *(superadmin and groupadmin and groupassis)* select the channelname he/she want to delete. This route reads MongoDB and removes selected channel from channels array. And writes new channels list into MongoDB and returns a **channels** list except the selected channel.
 
 **[POST]addUsersToChannel.js**:<br/>
-The client user *(superadmin and groupadmin and groupassis)* selects the username and channelname. This route reads and writes data.json file. Add the exist user to the selected channel in the data.json file and return a **channels** list.
+The client user *(superadmin and groupadmin and groupassis)* selects the username and channelname. This route reads and writes MongoDB. Add the exist user to the selected channel in the MongoDB and return a **channels** list.
 
 **[DELETE]deleteUsersFromChannel.js**:<br/>
-The client user *(superadmin and groupadmin and groupassis)* selects the username and channelname. This route reads and writes data.json file. Delete the exist user from the selected channel in the data.json file and return a **channels** list.
+The client user *(superadmin and groupadmin and groupassis)* selects the username and channelname. This route reads and writes MongoDB. Delete the exist user from the selected channel in the MongoDB and return a **channels** list.
