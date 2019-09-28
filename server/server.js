@@ -41,8 +41,10 @@ MongoClient.connect(url, { poolSize: 10, useNewUrlParser: true, useUnifiedTopolo
 // Cross origin resourse sharing to cater for port 4200 to port 3000
 app.use(cors());
 
+// Define port used for server
 const PORT = 3000;
 
+// Set up socket
 sockets.connect(io, PORT);
 
 const bodyParser = require('body-parser');

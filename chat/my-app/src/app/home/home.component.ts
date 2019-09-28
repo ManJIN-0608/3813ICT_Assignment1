@@ -262,6 +262,7 @@ export class HomeComponent implements OnInit {
     this.fetchAllChannels();
   }
 
+  // Add new message to the message array
   private initIoConnection(){
     this.socketService.initSocket();
     this.ioConnection = this.socketService.onMessage()
@@ -271,6 +272,7 @@ export class HomeComponent implements OnInit {
   }
   chat(){
     if(this.messagecontent){
+      // Check there is a message to send
       this.socketService.send(this.messagecontent);
       this.messagecontent=null;
     }else{
