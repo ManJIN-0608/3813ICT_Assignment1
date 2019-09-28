@@ -15,17 +15,38 @@ describe('Server test', function() {
         console.log("after test");
     });
 
-    // describe('/api-getitem', () => {
-    //     it('it should GET all the products', (done) => {
-    //         chai.request(app)
-    //             .post('/api-getitem')
-    //             .end((err, res) => {
-    //                 res.should.have.status(200);
-    //                 res.body.should.be.a('array');
-    //                 done();
-    //              });
-    //     });
-    // });
+    describe('/fetchAllUsers', () => {
+        it('it should GET all the users', (done) => {
+            chai.request(app)
+                .post('/fetchAllUsers')
+                .end((err, res) => {
+                    res.should.have.status(404);
+                    done();
+                 });
+        });
+    });
+
+    describe('/fetchAllGroups', () => {
+        it('it should GET all the groups', (done) => {
+            chai.request(app)
+                .post('/fetchAllGroups')
+                .end((err, res) => {
+                    res.should.have.status(404);
+                    done();
+                 });
+        });
+    });
+
+    describe('/fetchAllChannels', () => {
+        it('it should GET all the channels', (done) => {
+            chai.request(app)
+                .post('/fetchAllChannels')
+                .end((err, res) => {
+                    res.should.have.status(404);
+                    done();
+                 });
+        });
+    });
 
     describe('/addUser', () => {
         it('it should ADD a user', (done) => {
