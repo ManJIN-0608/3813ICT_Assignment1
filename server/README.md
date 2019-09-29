@@ -1,5 +1,5 @@
 # Summary
-The server files are largely spread out between 15 main files:
+The server files are largely spread out between 16 main files:
 * server.js
 * data.json
 * checkUser.js
@@ -17,6 +17,7 @@ The server files are largely spread out between 15 main files:
 * deleteChannel.js
 * addUsersToChannel.js
 * deleteUsersFromChannel.js
+* upload.js
 
 ## server.js
 **server.js** is the main file that will run the server.
@@ -143,5 +144,5 @@ The client user *(superadmin and groupadmin and groupassis)* select the channeln
 **[POST]addUsersToChannel.js**:<br/>
 The client user *(superadmin and groupadmin and groupassis)* selects the username and channelname. This route reads and writes MongoDB. Add the exist user to the selected channel in the MongoDB and return a **channels** list.
 
-**[DELETE]deleteUsersFromChannel.js**:<br/>
+**[DELETE]deleteUsersFrUseromChannel.js**:<br/>
 The client user *(superadmin and groupadmin and groupassis)* selects the username and channelname. This route reads and writes MongoDB. Delete the exist user from the selected channel in the MongoDB and return a **channels** list.
