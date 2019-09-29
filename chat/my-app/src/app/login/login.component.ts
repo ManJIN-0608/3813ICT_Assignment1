@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  // Check the username and login
+  // Check the username and password
   login(){
     let userObj = {username: this.username, password: this.password};
 
