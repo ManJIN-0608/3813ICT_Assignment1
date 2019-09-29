@@ -1,7 +1,7 @@
 # Summary
 The server files are largely spread out between 16 main files:
 * server.js
-* data.json
+* data.json (not for assignment2)
 * checkUser.js
 * fetchUser.js
 * fetchAllUsers.js
