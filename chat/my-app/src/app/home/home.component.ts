@@ -57,19 +57,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private forms:FormsModule, private router:Router, private http:HttpClient, private socketService:SocketService, private imguploadService:ImguploadService) { }
 
-  onFileSelected(event){
-    console.log(event);
-    this.selectedfile = event.target.files[0];
-  }
-
-  onUpload(){
-    const fd = new FormData();
-    fd.append('image', this.selectedfile, this.selectedfile.name);
-    this.imguploadService.imgupload(fd).subscribe(res=>{
-      this.imagepath = res.data.filename;
-      console.log(res.data.filename + ' , ' + res.data.size);
-    });
-  }
 
   // Create a user
   createUser(){
@@ -314,6 +301,20 @@ export class HomeComponent implements OnInit {
     }else{
       console.log("no message");
     }
+  }
+
+  onFileSelected(event){
+    console.log(event);
+    this.selectedfile = event.target.files[0];
+  }
+
+  onUpload(){
+    const fd = new FormData();
+    fd.append('image', this.selectedfile, this.selectedfile.name);
+    this.imguploadService.imgupload(fd).subscribe(res=>{
+      this.imagepath = res.data.filename;
+      console.log(res.data.filename + ' , ' + res.data.size);
+    });
   }
 
   // joinroom() {

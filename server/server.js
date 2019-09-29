@@ -1,11 +1,16 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const formidable = require('formidable');
 const cors = require('cors');
+app.use(cors());
 var http = require('http').Server(app);
 const io = require('socket.io')(http);
 const sockets = require('./socket.js');
+const formidable = require('formidable');
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 const MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
@@ -40,17 +45,13 @@ MongoClient.connect(url, { poolSize: 10, useNewUrlParser: true, useUnifiedTopolo
 });
 
 // Cross origin resourse sharing to cater for port 4200 to port 3000
-app.use(cors());
+
 
 // Define port used for server
 const PORT = 3000;
 
 // Set up socket
 sockets.connect(io, PORT);
-
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 // Point static path to dist if you want use your own server to serve Angular webpage
 app.use(express.static('http://localhost:4200'));

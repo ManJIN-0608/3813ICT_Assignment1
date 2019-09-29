@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 // Module returns an array containing all channel objects
 module.exports = function(app, db){
     app.post("/fetchAllChannels", function(req, res){
