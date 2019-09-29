@@ -22,29 +22,5 @@ module.exports = function (app, db) {
                 console.log(groups);
             });
         });
-
-        // fs.readFile("./data.json", "utf-8", function (err, data) {
-        //     if (err) {
-        //         throw err;
-        //     }
-        //     allData = JSON.parse(data);
-        //     for (let i = 0; i < allData.groups.length; i++) {
-        //         if (allData.groups[i].groupname == group && allData.groups[i].users.indexOf(user) == -1) {
-        //             allData.groups[i].users.push(user);
-        //         }
-        //     }
-
-        //     groups = allData.groups;
-        //     console.log(allData);
-            
-        //     let allDataJson = JSON.stringify(allData);
-        //     fs.writeFile("./data.json", allDataJson, "utf-8", function (err) {
-        //         if (err) {
-        //             throw err;
-        //         }
-        //     });
-        //     console.log(groups);
-        //     res.send(groups);
-        // });
 });
 }

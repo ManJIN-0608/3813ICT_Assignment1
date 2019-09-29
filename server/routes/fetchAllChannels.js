@@ -11,22 +11,5 @@ module.exports = function(app, db){
             res.send(channels);
             console.log(channels);
         });
-
-        // fs.readFile("./data.json", "utf8", function(err, data){
-        //     if(err){
-        //         throw err;
-        //     }
-        //     allData = JSON.parse(data);
-        //     channels = allData.channels;
-        //         // Removes active user from user array
-        //     for(let i = 0; i < channels.length; i++){
-        //         if(channels[i].channelname == channelname){
-        //             console.log(channels[i]);
-        //             channels.splice([i], 1);
-        //         }
-        //     }
-        //     console.log(channels);
-        //     res.send(channels);
-        // });
     });
 }

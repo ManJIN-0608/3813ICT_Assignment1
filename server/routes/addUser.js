@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 // Create a new user by username, email and role
 module.exports = function (app, db) {
     app.post("/addUser", async function (req, res) {
