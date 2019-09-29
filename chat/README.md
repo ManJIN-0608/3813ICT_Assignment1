@@ -53,3 +53,5 @@ The home component is my main page. It uses **all routes** from node server and 
 ## Services
 * WebSocketService
     * Exposes a socket initialisation function used for all client connecting to the chat room.
+* ImguploadService
+    * Images can be uploaded during a chat as a chat message.

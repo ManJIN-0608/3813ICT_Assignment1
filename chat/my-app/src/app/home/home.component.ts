@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SocketService } from '../services/socket.service';
+import { ImguploadService } from '../services/imgupload.service';
 
 const BACKEND_URL = "http://localhost:3000";
 
@@ -22,6 +23,10 @@ export class HomeComponent implements OnInit {
   messagecontent: string="";
   messages: string[] = [];
   ioConnection: any;
+
+  title = 'app';
+  selectedfile = null;
+  imagepath = "";
 
   // User
   username="";
@@ -50,7 +55,21 @@ export class HomeComponent implements OnInit {
 
   error = '';
 
-  constructor(private forms:FormsModule, private router:Router, private http:HttpClient, private socketService:SocketService) { }
+  constructor(private forms:FormsModule, private router:Router, private http:HttpClient, private socketService:SocketService, private imguploadService:ImguploadService) { }
+
+  onFileSelected(event){
+    console.log(event);
+    this.selectedfile = event.target.files[0];
+  }
+
+  onUpload(){
+    const fd = new FormData();
+    fd.append('image', this.selectedfile, this.selectedfile.name);
+    this.imguploadService.imgupload(fd).subscribe(res=>{
+      this.imagepath = res.data.filename;
+      console.log(res.data.filename + ' , ' + res.data.size);
+    });
+  }
 
   // Create a user
   createUser(){

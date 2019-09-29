@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-// const path = require('path');
+const path = require('path');
+const formidable = require('formidable');
 const cors = require('cors');
 var http = require('http').Server(app);
 const io = require('socket.io')(http);
@@ -60,5 +61,10 @@ let server = http.listen(3000, function () {
     console.log("My First Nodejs Server!");
     console.log("Server listening on: " + host + " port: " + port);
 });
+
+
+app.use(express.static(path.join(__dirname, '../dist/my-app/')));
+app.use('./images',express.static(path.join(__dirname, './userimages')));
+require('./routes/uploads.js')(app,formidable);
 
 module.exports = app; // this export is for test

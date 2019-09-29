@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 import { SocketService } from './services/socket.service';
+import { ImguploadService } from './services/imgupload.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { SocketService } from './services/socket.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [SocketService],
+  providers: [SocketService, ImguploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
