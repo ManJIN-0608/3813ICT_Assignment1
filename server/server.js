@@ -8,6 +8,7 @@ const io = require('socket.io')(http);
 const sockets = require('./socket.js');
 const formidable = require('formidable');
 
+// Cross origin resourse sharing to cater for port 4200 to port 3000
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -43,9 +44,6 @@ MongoClient.connect(url, { poolSize: 10, useNewUrlParser: true, useUnifiedTopolo
     require("./routes/deleteUsersFromChannel.js")(app, db);
     require("./routes/deleteUsersFromGroup.js")(app, db);
 });
-
-// Cross origin resourse sharing to cater for port 4200 to port 3000
-
 
 // Define port used for server
 const PORT = 3000;

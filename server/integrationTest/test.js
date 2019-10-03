@@ -103,4 +103,46 @@ describe('Server test', function() {
                 });
         });
     });
+
+    describe('/deleteUser', () => {
+        it('it should DELETE a user', (done) => {
+            chai.request(app)
+                .post('/deleteUser')
+                .type('form')
+                .send({"username":"text"})
+                .end((err, res) => {
+                    res.should.have.status(404);
+                    // res.body.should.be.a('array');
+                    done();
+                });
+        });
+    });
+
+    describe('/deleteGroup', () => {
+        it('it should DELETE a group', (done) => {
+            chai.request(app)
+                .post('/deleteGroup')
+                .type('form')
+                .send({"groupname":"text"})
+                .end((err, res) => {
+                    res.should.have.status(404);
+                    // res.body.should.be.a('array');
+                    done();
+                });
+        });
+    });
+
+    describe('/deleteChannel', () => {
+        it('it should DELETE a channel', (done) => {
+            chai.request(app)
+                .post('/deleteChannel')
+                .type('form')
+                .send({"channelname":"text"})
+                .end((err, res) => {
+                    res.should.have.status(404);
+                    // res.body.should.be.a('array');
+                    done();
+                });
+        });
+    });
 })

@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
 <h2>Hello {{user.username}}!</h2>
 <div class="container">
   <div class="float-right">
@@ -9,10 +11,20 @@
 <!-- superadmin and groupadmin permissions -->
 <div *ngIf="user.role == 'superadmin' || user.role == 'groupadmin'" class="form-group" class="container">
     <h3>Create User</h3>
-    <form>
-      <input type="text" [(ngModel)]="newUser" name="newUser" id="newUser" class="form-control" placeholder="Username"/><br>
-      <input type="text" [(ngModel)]="newPassword" name="newPassword" id="newPassword" class="form-control" placeholder="Password"/><br>
-      <input type="text" [(ngModel)]="newEmail" name="newEmail" id="newEmail" class="form-control" placeholder="Email"/><br>
+    <form ng-app="my-app"  ng-controller="validateCtrl" name="myForm" novalidate>
+      <input type="text" [(ngModel)]="newUser" name="newUser" id="newUser" class="form-control" placeholder="Username" required/>
+      <span style="color:red" ng-show="myForm.newUser.$dirty && myForm.newUser.$invalid">
+      <span ng-show="myForm.newUser.$error.required">Username is required.</span>
+      </span>
+      <input type="text" [(ngModel)]="newPassword" name="newPassword" id="newPassword" class="form-control" placeholder="Password" required/>
+      <span style="color:red" ng-show="myForm.newPassword.$dirty && myForm.newPassword.$invalid">
+      <span ng-show="myForm.newPassword.$error.required">Password is required.</span>
+      </span>
+      <input type="text" [(ngModel)]="newEmail" name="newEmail" id="newEmail" class="form-control" placeholder="Email" required/>
+      <span style="color:red" ng-show="myForm.newEmail.$dirty && myForm.newEmail.$invalid">
+      <span ng-show="myForm.newEmail.$error.required">Email is required.</span><br>
+      <span ng-show="myForm.newEmail.$error.newEmail">Invalid email address.</span>
+      </span><br>
       <select [(ngModel)]="newRole" name="newRole" class="mdb-select md-form">
         <option value="" disabled selected>Select Role</option>
         <option value="user">User</option>
@@ -21,12 +33,16 @@
         <option value="superadmin" *ngIf="user.role == 'superadmin'">Super Admin</option>
       </select><br><br>
       <div>
-        <input type="submit" value="Create a new user" class="btn btn-info" (click)="createUser()"/><br>
+        <input type="submit" value="Create a new user" class="btn btn-info" (click)="createUser()" ng-disabled="myForm.newUser.$dirty && myForm.newUser.$invalid ||
+        myForm.newEmail.$dirty && myForm.newEmail.$invalid"/><br>
       </div>
     </form><br>
     <h3>Create Group</h3>
     <form>
-      <input type="text" [(ngModel)]="newGroup" name="newGroup" id="newGroup" class="form-control" placeholder="Groupname"/><br>
+      <input type="text" [(ngModel)]="newGroup" name="newGroup" id="newGroup" class="form-control" placeholder="Groupname" required/>
+      <span style="color:red" ng-show="myForm.newGroup.$dirty && myForm.newGroup.$invalid">
+      <span ng-show="myForm.newGroup.$error.required">Groupname is required.</span>
+      </span>
       <div>
         <input type="submit" value="Create a new group" class="btn btn-info" (click)="createGroup()"/><br>
       </div>
@@ -121,7 +137,10 @@
               {{g.groupname}}
             </option>
         </select>
-      <input type="text" [(ngModel)]="newChannel" name="newChannel" id="newChannel" class="form-control" placeholder="Channelname"/><br>
+      <input type="text" [(ngModel)]="newChannel" name="newChannel" id="newChannel" class="form-control" placeholder="Channelname" required/>
+      <span style="color:red" ng-show="myForm.newChannel.$dirty && myForm.newChannel.$invalid">
+      <span ng-show="myForm.newChannel.$error.required">Channelname is required.</span>
+      </span>
       <div>
         <input type="submit" value="Create a new channel" class="btn btn-info" (click)="createChannel()"/><br>
       </div>
@@ -207,6 +226,12 @@
 <div class="container">
   <h3>Chat</h3>
   <form>
+      <select [(ngModel)]="channelname" name="channelname" class="mdb-select md-form">
+          <option value="">Select Channel</option>
+          <option *ngFor="let c of channels">
+            {{c.channelname}}
+          </option>
+        </select><br>
     <div calss="form-group">
       <label for="messagecontent">New Message</label>
       <input type="text" [(ngModel)]="messagecontent" name="messagecontent" id="messagecontent" class="form-control" placeholder="Enter your words or sentences here..."/>
