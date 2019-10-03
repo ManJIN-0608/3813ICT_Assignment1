@@ -1,5 +1,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
+<!-- Logut button -->
 <h2>Hello {{user.username}}!</h2>
 <div class="container">
   <div class="float-right">
@@ -10,6 +11,8 @@
 <!-- user and group -->
 <!-- superadmin and groupadmin permissions -->
 <div *ngIf="user.role == 'superadmin' || user.role == 'groupadmin'" class="form-group" class="container">
+    
+    <!-- Create User -->
     <h3>Create User</h3>
     <form ng-app="my-app"  ng-controller="validateCtrl" name="myForm" novalidate>
       <input type="text" [(ngModel)]="newUser" name="newUser" id="newUser" class="form-control" placeholder="Username" required/>
@@ -37,6 +40,8 @@
         myForm.newEmail.$dirty && myForm.newEmail.$invalid"/><br>
       </div>
     </form><br>
+
+    <!-- Create group -->
     <h3>Create Group</h3>
     <form>
       <input type="text" [(ngModel)]="newGroup" name="newGroup" id="newGroup" class="form-control" placeholder="Groupname" required/>
@@ -47,6 +52,8 @@
         <input type="submit" value="Create a new group" class="btn btn-info" (click)="createGroup()"/><br>
       </div>
     </form><br>
+
+    <!-- Delete group -->
     <h3>Delete Group</h3>
     <form>
       <select [(ngModel)]="groupname" name="groupname" class="mdb-select md-form">
@@ -59,6 +66,8 @@
         <input type="submit" value="Delete a group" class="btn btn-info" (click)="deleteGroup()"/>
       </div>
     </form><br>
+
+    <!-- Add user to group -->
     <h3>Add users to group</h3>
     <form>
       <select [(ngModel)]="groupname" name="groupname" class="mdb-select md-form">
@@ -77,6 +86,8 @@
         <input type="submit" value="Add users to group" class="btn btn-info" (click)="addUsersToGroup()"/><br>
       </div>
     </form><br>
+
+    <!-- Delete user from group -->
     <h3>Delete users from group</h3>
     <form>
       <select [(ngModel)]="groupname" name="groupname" class="mdb-select md-form">
@@ -106,6 +117,8 @@
 <!-- delete a user -->
 <!-- only superadmin can delete a user -->
 <div *ngIf="user.role == 'superadmin'" class="form-group" class="container">
+
+    <!-- Delete user -->
     <h3>Delete User</h3>
     <form>
       <select [(ngModel)]="username" name="username" class="mdb-select md-form">
@@ -129,6 +142,8 @@
 <!-- channel -->
 <!-- superadmin, groupadmin, and groupassis permissions -->
 <div *ngIf="user.role == 'superadmin' || user.role == 'groupadmin' || user.role == 'groupassis'" class="form-group" class="container">
+    
+    <!-- Create channel -->
     <h3>Create Channel</h3>
     <form>
         <select [(ngModel)]="groupname" name="groupname" class="mdb-select md-form">
@@ -145,6 +160,8 @@
         <input type="submit" value="Create a new channel" class="btn btn-info" (click)="createChannel()"/><br>
       </div>
     </form><br>
+
+    <!-- Delete channel -->
     <h3>Delete Channel</h3>
     <form>
       <select [(ngModel)]="channelname" name="channelname" class="mdb-select md-form">
@@ -157,6 +174,8 @@
         <input type="submit" value="Delete a channel" class="btn btn-info" (click)="deleteChannel()"/>
       </div>
     </form><br>
+
+    <!-- Add uder to channel -->
     <h3>Add users to channel</h3>
     <form>
       <select [(ngModel)]="channelname" name="channelname" class="mdb-select md-form">
@@ -175,6 +194,8 @@
         <input type="submit" value="Add users to channel" class="btn btn-info" (click)="addUsersToChannel()"/><br>
       </div>
     </form><br>
+
+    <!-- Delete user from channel -->
     <h3>Delete users from channel</h3>
     <form>
       <select [(ngModel)]="channelname" name="channelname" class="mdb-select md-form">
@@ -195,6 +216,7 @@
     </form><br>
 </div>
 
+<!-- Not figured out -->
 <!-- <div class="container">
   <form>
     <div calss="form-group" *ngIf="isinRoom">
@@ -232,6 +254,7 @@
             {{c.channelname}}
           </option>
         </select><br>
+        <!-- Send messages and images -->
     <div calss="form-group">
       <label for="messagecontent">New Message</label>
       <input type="text" [(ngModel)]="messagecontent" name="messagecontent" id="messagecontent" class="form-control" placeholder="Enter your words or sentences here..."/>
@@ -243,6 +266,8 @@
     </div>
   </form>
   <img src="images\{{imagepath}}"/>
+  
+  <!-- Chat message -->
   <h3>Chat Message</h3>
     <ul>
       <li *ngFor="let message of messages">{{message}}</li>

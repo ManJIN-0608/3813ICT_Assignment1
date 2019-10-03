@@ -11,6 +11,8 @@ module.exports = function(app, db){
             return res.sendstatus(400);
         }
 
+        // Connect MongoDB
+        // Check user's username and password
         let users = db.collection('users');
         users.find().toArray((err, users) => {
             for(let i = 0; i < users.length; i++){

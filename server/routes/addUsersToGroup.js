@@ -15,6 +15,8 @@ module.exports = function (app, db) {
             return res.sendstatus(400);
         }
 
+        // Connect MongoDB
+        // Update one record
         let groups = db.collection('groups');
         await groups.updateOne({ groupname: group }, {$push :{users: user }},(err,docs)=>{
             groups.find({}).toArray((err, groups)=>{

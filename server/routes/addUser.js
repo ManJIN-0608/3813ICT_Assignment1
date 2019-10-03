@@ -17,6 +17,7 @@ module.exports = function (app, db) {
             return res.sendstatus(400);
         }
 
+        // Connect MongoDB
         let users = db.collection('users');
         // users.insertOne(newUser);
         await users.find().toArray((err, users) => { 
@@ -30,6 +31,7 @@ module.exports = function (app, db) {
 
         });
 
+        // Check the user exists or not and insert one record
         if(userExists == false){
             //console.log(userExists);
             users.insertOne(newUser);

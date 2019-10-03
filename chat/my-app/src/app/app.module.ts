@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
+// Import secketserice and imageuploadservice
 import { SocketService } from './services/socket.service';
 import { ImguploadService } from './services/imgupload.service';
 

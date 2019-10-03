@@ -20,6 +20,7 @@ module.exports = function(app, db){
             return res.sendstatus(400);
         }
 
+        // Connect MondoDB
         let channels = db.collection('channels');
         await channels.find().toArray((err, channels) => { 
             // console.log(users)
@@ -32,6 +33,7 @@ module.exports = function(app, db){
 
         });
 
+        // Check the channel exists or not
         if(channelExists == false){
             //console.log(userExists);
             channels.insertOne(newChannel);

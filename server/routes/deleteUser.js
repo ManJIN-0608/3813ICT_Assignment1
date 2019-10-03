@@ -5,6 +5,8 @@ module.exports = function(app, db){
         console.log("Made it to deleteUser");
         console.log(username);
 
+        // Connect MongoDB
+        // Delete one record
         var myquery = {username:req.body.username};
         let users = db.collection('users');
         users.deleteOne(myquery,(err,docs)=>{

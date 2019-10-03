@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
+// Backend url
 const BACKEND_URL = "http://localhost:3000";
 
 @Component({
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  // Check the username and password
+  // Check the username and password and save username as localstorage
   login(){
     let userObj = {username: this.username, password: this.password};
 

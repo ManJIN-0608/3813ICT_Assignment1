@@ -15,6 +15,7 @@ describe('Server test', function() {
         console.log("after test");
     });
 
+    // Test 1
     describe('/fetchAllUsers', () => {
         it('it should GET all the users', (done) => {
             chai.request(app)
@@ -26,6 +27,7 @@ describe('Server test', function() {
         });
     });
 
+    // Test 2
     describe('/fetchAllGroups', () => {
         it('it should GET all the groups', (done) => {
             chai.request(app)
@@ -37,6 +39,7 @@ describe('Server test', function() {
         });
     });
 
+    // Test 3
     describe('/fetchAllChannels', () => {
         it('it should GET all the channels', (done) => {
             chai.request(app)
@@ -48,6 +51,7 @@ describe('Server test', function() {
         });
     });
 
+    // Test 4
     describe('/addUser', () => {
         it('it should ADD a user', (done) => {
             chai.request(app)
@@ -62,6 +66,7 @@ describe('Server test', function() {
         });
     });
 
+    // Test 5
     describe('/addGroup', () => {
         it('it should ADD a group', (done) => {
             chai.request(app)
@@ -76,6 +81,7 @@ describe('Server test', function() {
         });
     });
 
+    // Test 6
     describe('/addChannel', () => {
         it('it should ADD a channel', (done) => {
             chai.request(app)
@@ -90,6 +96,7 @@ describe('Server test', function() {
         });
     });
 
+    // Test 7
     describe('/checkUser', () => {
         it('it should CHECK a user', (done) => {
             chai.request(app)
@@ -104,6 +111,7 @@ describe('Server test', function() {
         });
     });
 
+    // Test 8
     describe('/deleteUser', () => {
         it('it should DELETE a user', (done) => {
             chai.request(app)
@@ -118,6 +126,7 @@ describe('Server test', function() {
         });
     });
 
+    // Test 9
     describe('/deleteGroup', () => {
         it('it should DELETE a group', (done) => {
             chai.request(app)
@@ -132,6 +141,7 @@ describe('Server test', function() {
         });
     });
 
+    // Test 10
     describe('/deleteChannel', () => {
         it('it should DELETE a channel', (done) => {
             chai.request(app)

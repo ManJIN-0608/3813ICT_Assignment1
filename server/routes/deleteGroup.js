@@ -5,6 +5,8 @@ module.exports = function(app, db){
         console.log("Made it to deleteGroup");
         console.log(groupname);
 
+        // Connect MongoDB
+        // Delete one record
         var myquery = {groupname:req.body.groupname};
         let groups = db.collection('groups');
         groups.deleteOne(myquery,(err,docs)=>{

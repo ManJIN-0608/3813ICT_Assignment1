@@ -1,3 +1,4 @@
+// Upload image
 module.exports = function(app,formidable){
     app.post('/upload', (req,res) => {
         var form = new formidable.IncomingForm({ uploadDir: './userimages' });

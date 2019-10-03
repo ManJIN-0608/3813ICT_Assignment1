@@ -5,6 +5,8 @@ module.exports = function(app, db){
         console.log("Made it to deleteChannel");
         console.log(channelname);
 
+        // Connect MongoDB
+        // Delete one record
         var myquery = {channelname:req.body.channelname};
         let channels = db.collection('channels');
         channels.deleteOne(myquery,(err,docs)=>{

@@ -12,6 +12,8 @@ module.exports = {
     }
 }
 
+
+// Not figured out (join room)
 // module.exports = {
 //     connect: function(io, PORT) {
 //         var channels=["room1","room2","room3","room4"];

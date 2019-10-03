@@ -14,6 +14,8 @@ module.exports = function (app, db) {
             return res.sendstatus(400);
         }
 
+        // Connect MongoDB
+        // Update one record
         let channels = db.collection('channels');
         await channels.updateOne({ channelname: channel }, {$push :{users: user }},(err,docs)=>{
             channels.find({}).toArray((err, channels)=>{

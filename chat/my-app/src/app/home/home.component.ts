@@ -238,7 +238,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // Fetch all froups
+  // Fetch all groups
   fetchAllGroups(){
     let userObj = {"groupname" : this.groupname};
     this.http.post<any>(BACKEND_URL + "/fetchAllGroups", userObj).subscribe((data) => {
@@ -293,6 +293,8 @@ export class HomeComponent implements OnInit {
         this.messages.push(message);
       });
   }
+
+  // Chat function
   chat(){
     if(this.messagecontent){
       // Check there is a message to send
@@ -303,6 +305,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // Image uploade
   onFileSelected(event){
     console.log(event);
     this.selectedfile = event.target.files[0];
@@ -316,6 +319,8 @@ export class HomeComponent implements OnInit {
       console.log(res.data.filename + ' , ' + res.data.size);
     });
   }
+
+  // Not figured out
 
   // joinroom() {
   //   this.socketService.joinroom(this.channelname);

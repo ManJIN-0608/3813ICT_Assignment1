@@ -6,6 +6,7 @@ module.exports = function(app, db){
         console.log("Made it to fetchAllGroups");
         console.log(groupname);
 
+        // Fetch all groups
         let groups = db.collection('groups');
         groups.find({}).toArray((err, groups) => {
             res.send(groups);

@@ -16,6 +16,7 @@ module.exports = function(app, db){
             return res.sendstatus(400);
         }
 
+        // Connect MondoDB
         let groups = db.collection('groups');
         await groups.find().toArray((err, groups) => { 
             // console.log(users)
@@ -28,6 +29,7 @@ module.exports = function(app, db){
 
         });
 
+        // Check the group exists or not and insert one record
         if(groupExists == false){
             //console.log(userExists);
             groups.insertOne(newGroup);

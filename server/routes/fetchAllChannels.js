@@ -6,6 +6,7 @@ module.exports = function(app, db){
         console.log("Made it to fetchAllChannels");
         console.log(channelname);
 
+        // Fetch all channels
         let channels = db.collection('channels');
         channels.find({}).toArray((err, channels) => {
             res.send(channels);

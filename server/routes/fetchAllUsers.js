@@ -6,6 +6,7 @@ module.exports = function(app, db){
         console.log("Made it to fetchAllUsers");
         console.log(username);
 
+        // Fetch all users
         let users = db.collection('users');
         users.find({}).toArray((err, users) => {
             res.send(users);
