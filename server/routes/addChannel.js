@@ -33,7 +33,7 @@ module.exports = function(app, db){
 
         });
 
-        // Check the channel exists or not
+        // Check the channel exists or not and insert one record
         if(channelExists == false){
             //console.log(userExists);
             channels.insertOne(newChannel);
